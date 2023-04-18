@@ -1,0 +1,25 @@
+.font {
+    /* color: #6D6E71; */
+    font-style: normal;
+    line-height: 20px;
+}
+
+/* .size_text {
+    font-size: 14px;
+} */
+
+.bold {
+    font-weight: bold;
+}
+
+.color_font {
+    color: rgb(146 146 146);
+    font-size: 12px;
+    font-style: italic;
+}
+
+.color_font_statistical {
+    color: #fff;
+    font-size: 12px;
+    font-style: bold;
+}
