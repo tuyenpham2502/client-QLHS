@@ -1,6 +1,6 @@
 import { Typography } from 'antd';
 import React from 'react';
-import styles from 'assets/css/common/components/text.module.css'
+import styles from 'assets/styles/common/components/controls/text.module.css'
 
 const { Text, Title, Link } = Typography;
 

@@ -1,4 +1,4 @@
-import { notifyError } from "@/infrastructure/common/components/controls/toast/toast-message";
+import { notifyError, notifySuccess } from "@/infrastructure/common/components/controls/toast/toast-message";
 import { AuthErrors } from "@/infrastructure/helpers";
 import firebase, { auth } from "@/infrastructure/services/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -13,6 +13,7 @@ export const signInWithEmail = async (
     await signInWithEmailAndPassword(auth, email, password).then((result) => {
         router.push("/");
         console.log(result);
+        notifySuccess(translator, "Sign in successfully");
     }
     ).catch((error) => {
         console.log(error.code);

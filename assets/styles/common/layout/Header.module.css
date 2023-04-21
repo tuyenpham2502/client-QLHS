@@ -1,0 +1,121 @@
+.header_main_layout_background {
+    margin: 10px;
+    height: 50px;
+    padding: 0px !important;
+    line-height: 50px;
+    border-radius: 3px;
+    background-color: #fff;
+}
+
+.header_main_layout_background .row_logout {
+    display: flex;
+    flex: 0 0 11.5%;
+    box-sizing: border-box;
+    align-items: center;
+    padding-right: 5px;
+    justify-content: flex-end;
+}
+
+.header_main_layout_background .icon_logout {
+    font-weight: 500;
+    color: red;
+}
+
+.header_main_layout_background .icon_logout:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.header_main_layout_background .text_logout {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.header_main_layout_background .text_logout:hover {
+    color: red;
+    cursor: pointer;
+}
+
+.header_main_layout_background .header_right {
+    margin: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+.header_right .information {
+    display: flex;
+    justify-content: flex-end;
+    cursor: pointer;
+    margin-right: 0px;
+    align-items: center;
+}
+
+.information:hover {
+    color: rgb(51, 51, 147);
+}
+
+.information .avatar {
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.information .title {
+    display: grid;
+}
+
+.title .avatarname {
+    color: black;
+    font-size: 12px;
+}
+
+.avatarname:hover {
+    color: rgb(51, 51, 147);
+}
+
+.title .avatarrole {
+    color: gray;
+    font-size: 10px;
+}
+
+.header_main_layout_background .header_right .header_information {
+    background-color: #ffffff;
+    padding: 10px
+}
+
+.layout_header .header_container .group_account {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.menu {
+    min-width: 200px;
+    background: #fff;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0px 8px 16px rgb(0 0 0 / 8%);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 24px 0px 24px;
+}
+
+.menu a {
+    color: #0A1F41;
+    font-size: 16px;
+}
+
+.menu a:hover {
+    color: #006EF1;
+}
+
+.pb_10 {
+    padding-bottom: 10px;
+}

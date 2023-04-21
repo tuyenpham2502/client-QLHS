@@ -9,7 +9,9 @@ export default function Home(context: any) {
   return (
     <>
       <MainLayout>
-        <DashBoardPage context={context} />
+        <div style={{ background: '#ecf2fb', borderRadius: "5px" }}>
+          <DashBoardPage context={context} />
+        </div>
       </MainLayout>
     </>
   )

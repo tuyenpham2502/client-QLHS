@@ -53,7 +53,11 @@ export default class Constant {
             code: AuthErrorCodes.INVALID_PASSWORD,
             message: "Invalid password"
         };
-        
-
+        static UserDisable = {
+            code: AuthErrorCodes.USER_DISABLED,
+            message: "User disable"
+        };
     }
+
+
 }

@@ -1,0 +1,20 @@
+.qlhs_main_layout {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background: white;
+}
+
+.qlhs_main_layout .qlhs_main_content {
+    flex: 1;
+    overflow: auto;
+    position: relative;
+    background: #ededed;
+}
+
+.qlhs_main_layout .qlhs_main_content::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
