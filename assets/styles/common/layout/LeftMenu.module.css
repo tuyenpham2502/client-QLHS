@@ -1,0 +1,32 @@
+.layout_left_menu {
+    display: flex;
+}
+
+.layout_left_menu .layout_left_menu_sider_children {
+    height: 100%;
+    margin-top: -0.1px;
+    padding-top: 0.1px;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout_left_menu .left_menu_item {
+    display: flex;
+    flex: 1;
+    overflow: auto;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo {
+    width: 70%;
+    margin: auto;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+.layout_left_menu .left_menu_item::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+    /* make scrollbar transparent */
+}
