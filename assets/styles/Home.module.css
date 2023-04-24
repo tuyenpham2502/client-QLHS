@@ -227,3 +227,7 @@
     transform: rotate(0deg);
   }
 }
+
+.ant-menu-light .ant-menu-item-selected {
+  background-color:#14238A;
+}

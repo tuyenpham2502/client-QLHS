@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Menu } from 'antd';
 const {SubMenu} = Menu;
-export const MenuUI = ({children, props}:any) => (
+export const MenuUI = ({children, ...props}:any) => (
     <Menu {...props}>
         {children}
     </Menu>

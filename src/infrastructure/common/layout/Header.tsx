@@ -23,9 +23,9 @@ const Header = ({ context, translator, ...props }: any) => {
         <Layout.Header className={styles.header_main_layout_background}>
             <Row className={styles.header_right}>
                 
-                <Col span={3} className={styles.row_logout} >
+                <Col span={3} className={styles.row_logout} onClick={handleSignOut} >
                     <LogoutOutlined className={styles.icon_logout} />
-                    <BoldText children={"Đăng xuất"} className={styles.text_logout} />
+                    <BoldText className={styles.text_logout}>Đăng xuất</BoldText>
                 </Col>
             </Row>
         </Layout.Header>

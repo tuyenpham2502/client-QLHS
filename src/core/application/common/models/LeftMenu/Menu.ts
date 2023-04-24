@@ -9,7 +9,7 @@ export default class Menu {
         this.key = key;
         this.items = children;
     }
-    theme: MenuTheme = "light";
+    theme: MenuTheme = "dark";
     defaultSelectedKeys: string[] = ['1'];
     key: string;
     mode: any = "inline";
