@@ -1,0 +1,13 @@
+.font {
+    color: red !important;
+    font-style: normal;
+    line-height: 20px;
+}
+
+.size-text {
+    font-size: 14px;
+}
+
+.bold {
+    font-weight: 600;
+}
