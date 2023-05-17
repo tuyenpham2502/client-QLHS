@@ -4,13 +4,13 @@ import { AuthErrors } from "@/infrastructure/helpers";
 import firebase, { auth } from "@/infrastructure/services/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { profileState } from "@/core/application/common/atoms/Identity/profile";
-export function SignInWithEmail (
+export const signInWithEmail = async (
     email:string,
     password:string,
     router:NextRouter,
     translator:any
-)  {
-    signInWithEmailAndPassword(auth, email, password).then((result) => {
+) => {
+    await signInWithEmailAndPassword(auth, email, password).then((result) => {
         console.log("result", result);
         router.push("/");
         notifySuccess(translator, "Sign in successfully");
