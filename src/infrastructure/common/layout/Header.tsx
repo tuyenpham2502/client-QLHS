@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRecoilValue } from 'recoil';
 import {
     LogoutOutlined,
     SearchOutlined,
@@ -7,6 +9,7 @@ import {
     LineOutlined,
     UserOutlined
 } from '@ant-design/icons';
+import { profileState } from "@/core/application/common/atoms/Identity/profile";
 import { Layout, Button, Row, Col, Avatar, Dropdown, } from 'antd';
 import type { MenuProps } from 'antd';
 import { InputText } from '@/infrastructure/common/components/controls/input';
@@ -15,20 +18,20 @@ import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { BoldText } from '../components/controls/text';
 import styles from 'assets/styles/common/layout/Header.module.css'
-import Link from 'next/link';
 const Header = ({ context, translator, ...props }: any) => {
-
+    const profileRef = useRecoilValue(profileState);
     const router = useRouter();
     const [textSearch, setTextSearch] = useState('');
-
-
+    
     const handleSignOut = () => {
         signOut(auth).then(() => {
-            router.push('/account/sign-in.html');
+            router.push('/authenticate/sign-in.html');
         }).catch((error: any) => {
             console.log(error);
         });
     }
+    
+    console.log("profileRef",profileRef);
 
     const onChange = (e: any) => {
         setTextSearch(e.target.value);
@@ -37,6 +40,7 @@ const Header = ({ context, translator, ...props }: any) => {
     const onBlurSearch = () => {
         setTextSearch(textSearch.trim());
     }
+
 
     const items: MenuProps['items'] = [
         {
@@ -53,7 +57,7 @@ const Header = ({ context, translator, ...props }: any) => {
             key: '2',
             label: (
                 <div>
-                    <Link href="/account/change-password.html">
+                    <Link href="/authenticate/change-password.html">
                         <BoldText>Change Password</BoldText>
                     </Link>
                 </div>

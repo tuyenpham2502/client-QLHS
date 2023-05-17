@@ -5,11 +5,11 @@ export enum MenuKeys {
     Users = 'users',
     Dashboard = 'dashboard', 
     //students
-    Student = 'student',
+    Students = 'students',
     AllStudents = 'all-students',
-    AddStudent = 'add-student',
-    EditStudent = 'edit-student',
-    StudentPromotion = 'student-promotion',
+    AddStudents = 'add-students',
+    EditStudent = 'edit-students',
+    PromotionStudents = 'promotion-students',
     //parents
     Parents = 'parents',
     //teachers
@@ -23,7 +23,7 @@ export enum MenuKeys {
     Expenses = 'expenses',
     AddExpenses = 'add-expenses',
     //subject
-    Subject = 'subject',
+    Subjects = 'subjects',
     //settings
     Settings = 'settings',
 }

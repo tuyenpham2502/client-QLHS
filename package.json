@@ -2,6 +2,7 @@
   "name": "qlhs",
   "version": "0.1.0",
   "private": true,
+  "license": "PNT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -13,16 +14,22 @@
     "@types/react": "18.0.34",
     "@types/react-dom": "18.0.11",
     "antd": "^5.4.2",
+    "chart.js": "^4.3.0",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "firebase": "^9.19.1",
     "i18next": "^22.4.14",
     "i18next-http-backend": "^2.2.0",
+    "moment": "^2.29.4",
     "next": "13.3.0",
     "next-seo": "^6.0.0",
     "react": "18.2.0",
+    "react-chartjs-2": "^5.2.0",
     "react-dom": "18.2.0",
     "react-i18next": "^12.2.0",
+    "recoil": "^0.7.7",
+    "rxjs": "^7.8.1",
+    "sharp": "^0.32.1",
     "typescript": "5.0.4"
   }
 }

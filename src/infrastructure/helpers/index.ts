@@ -1,7 +1,7 @@
 import Constant from "@/core/application/common/constants"
 
 
-export const validateFields = (isImplicitChange = false, key, isCheck, setError, error, message) => {
+export const validateFields = ({isImplicitChange = false, key, isCheck, setError, error, message}:any) => {
     if (isImplicitChange) {
         error[key] = {
             isError: isCheck,
@@ -31,3 +31,5 @@ export const AuthErrors = (error: string) => {
     }
 
 };
+
+
