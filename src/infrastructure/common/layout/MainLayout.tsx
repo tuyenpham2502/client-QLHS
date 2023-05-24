@@ -1,26 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Layout } from 'antd';
-import router from "next/router";
+import {useRouter} from "next/router";
 import { onAuthStateChanged } from "firebase/auth";
 import LeftMenu from "src/infrastructure/common/layout/LeftMenu";
 import Header from "src/infrastructure/common/layout/Header";
 import Content from "src/infrastructure/common/layout/Content";
-import { auth } from "@/infrastructure/services/firebase";
 import styles from 'assets/styles/common/layout/MainLayout.module.css'
+    import { useSetRecoilState } from "recoil";
+
+
 const MainLayout = ({ context, translator, ...props }: any) => {
+    const router = useRouter();
 
-    useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const uid = user.uid;
-                console.log("user is logged in", uid)
-            } else {
-                router.push('/authenticate/sign-in.html');
-                console.log("user is logged out")
-            }
-        });
+    
 
-    });
+
     return (
         <Layout className={styles.qlhs_main_layout}>
             <LeftMenu context={context} translator={translator} />

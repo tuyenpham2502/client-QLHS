@@ -11,27 +11,17 @@ import {
 } from '@ant-design/icons';
 import { profileState } from "@/core/application/common/atoms/Identity/profile";
 import { Layout, Button, Row, Col, Avatar, Dropdown, } from 'antd';
+import { useRouter } from 'next/router';
 import type { MenuProps } from 'antd';
 import { InputText } from '@/infrastructure/common/components/controls/input';
-import { auth } from '@/infrastructure/services/firebase';
-import { signOut } from 'firebase/auth';
-import { useRouter } from 'next/router';
 import { BoldText } from '../components/controls/text';
 import styles from 'assets/styles/common/layout/Header.module.css'
 const Header = ({ context, translator, ...props }: any) => {
-    const profileRef = useRecoilValue(profileState);
-    const router = useRouter();
+     const router = useRouter();
     const [textSearch, setTextSearch] = useState('');
+
     
-    const handleSignOut = () => {
-        signOut(auth).then(() => {
-            router.push('/authenticate/sign-in.html');
-        }).catch((error: any) => {
-            console.log(error);
-        });
-    }
     
-    console.log("profileRef",profileRef);
 
     const onChange = (e: any) => {
         setTextSearch(e.target.value);
@@ -66,7 +56,7 @@ const Header = ({ context, translator, ...props }: any) => {
         {
             key: '3',
             label: (
-                <div onClick={handleSignOut}>
+                <div>
                     <BoldText>Sign Out</BoldText>
                 </div>
             ),

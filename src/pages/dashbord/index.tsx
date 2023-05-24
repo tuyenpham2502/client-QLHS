@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useTransition } from "react";
 import { NextSeo } from "next-seo";
-import { Button, Card, Col, DatePicker, Row } from "antd";
+import { useRecoilValue } from "recoil";
+import dynamic from "next/dynamic";
+import { Button, Card, Col, DatePicker, Modal, Row } from "antd";
 import Image from "next/image";
 import moment from "moment";
 import {
@@ -18,25 +20,22 @@ import iconTeachersDashboard from "/assets/icons/icon-teachers-dashboard.png";
 import iconParentsDashboard from "/assets/icons/icon-parents-dashboard.png";
 import iconEarningDashboard from "/assets/icons/icon-earning-dashboard.png";
 
-import dynamic from "next/dynamic";
 
 
 
 
 const DashBoardPage = (context: any) => {
     const EarningsChartdd = dynamic(() => import('@/pages/dashbord/chart/earnings-chart'));
+    const [profile,setProfile] = useState<any>({});
+    const [isOpenModal, setIsOpenModal] = useState(false);
     const [date, setDate] = useState();
     const [dataEarning, setDataEarning] = useState({});
-
     const [isPending, startTransition] = useTransition();
-
-
     const totalValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(10000000);
-
     const feesValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(10000000);
 
+        
 
-    
     const onChangeDate = (date: any, dateString: any) => {
         setDate(date);
         startTransition(() => {
@@ -54,9 +53,6 @@ const DashBoardPage = (context: any) => {
             })
         })
     };
-
-    console.log("dataEarning", dataEarning);
-
 
     return (
         <>
@@ -316,6 +312,12 @@ const DashBoardPage = (context: any) => {
                     </Col>
                 </Row>
             </Col>
+            <Modal open={isOpenModal} >
+                sgsbs
+            </Modal>
+
+
+
         </>
     );
 };

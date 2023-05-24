@@ -6,7 +6,7 @@ import Image from 'next/image'
 import { MenuUI, MenuItemUI, SubMenuUI } from "@/infrastructure/common/components/menu/menu";
 import { MenuSubKeys } from "@/core/domain/enums/MenuKeys";
 import MenuItem from "@/core/application/common/models/LeftMenu/MenuItem";
-import Constant from "@/core/application/common/constants";
+import Constant from "@/core/application/common/Constants";
 import styles from 'assets/styles/common/layout/LeftMenu.module.css'
 import GroupedMenuItem from "@/core/application/common/models/LeftMenu/GroupedItem";
 const LeftMenu = ({ context, translator }: any) => {

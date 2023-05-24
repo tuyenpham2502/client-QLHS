@@ -3,13 +3,11 @@
 import React, { useState } from 'react';
 import styles from 'styles/pages/account/SignIn.module.css'
 import { Input, Button, Row, Col } from 'antd';
-import { useRouter } from 'next/router';
-import { auth } from '@/infrastructure/services/firebase';
-import { signInWithFacebook } from 'src/infrastructure/identity/account/SignInWithFaceBook';
-import { SignInWithEmail } from '@/infrastructure/identity/account/SignInWithEmail';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import { useTranslation } from 'react-i18next';
+import { auth } from '@/infrastructure/services/firebase';
 import { validateEmail } from '@/infrastructure/helpers/validate';
 import { MessageError } from '@/infrastructure/common/components/controls/message-error';
 import { validateInputPassword } from '@/infrastructure/helpers/validate';
@@ -21,7 +19,8 @@ const SignInPage = () => {
     const router = useRouter();
     const [user, setUser] = useState({
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: '',
     });
     const [errorEmail, setErrorEmail] = useState({
         isError: false,
@@ -33,30 +32,45 @@ const SignInPage = () => {
         message: ''
     });
 
+    const [errorConfirmPassword, setErrorConfirmPassword] = useState({
+        isError: false,
+        message: ''
+    });
+
     const oncChangeUserName = (e: any) => {
         setUser({
             ...user,
             email: e.target.value,
         })
-    }
+    };
 
     const onChangePassword = (e: any) => {
         setUser({
             ...user,
             password: e.target.value,
         })
-    }
+    };
+
+    const onChangeConfirmPassword = (e: any) => {
+        setUser({
+            ...user,
+            confirmPassword: e.target.value,
+        })
+    };
 
     const isValidateData = () => {
         onBlurEmail();
         onBlurPassword();
+        onBlurConfirmPassword();
         let checkEmail = validateEmail(user.email);
         let checkPassword = validateInputPassword(user.password);
-        if (checkEmail && checkPassword) {
+        let checkConfirmPassword = validateInputPassword(user.confirmPassword);
+        let comparePassword = user.password == user.confirmPassword ? true : false;
+        if (checkEmail && checkPassword && checkConfirmPassword && comparePassword) {
             return true;
         }
         return false;
-    }
+    };
 
     const validateFields = (isCheck: boolean, setError: { (value: React.SetStateAction<{ isError: boolean; message: string; }>): void; (arg0: any): void; }, error: { isError: boolean; message: string; }, message: string) => {
         setError({
@@ -69,18 +83,24 @@ const SignInPage = () => {
     const onBlurEmail = () => {
         let checkEmail = validateEmail(user.email);
         validateFields(!checkEmail, setErrorEmail, errorEmail, !checkEmail ? user.email ? "Email không hợp lệ" : "Vui lòng nhập Email" : "");
-    }
+    };
 
     const onBlurPassword = () => {
         let checkPassword = validateInputPassword(user.password);
-        validateFields(!checkPassword, setErrorPassword, errorPassword, !checkPassword ? user.password ? "Mật khẩu không hợp lệ" : "Vui lòng nhập mật khẩu" : "");
-    }
+        validateFields(!checkPassword, setErrorPassword, errorPassword, !checkPassword ?  "Mật khẩu phải từ 8-50 ký tự, gồm chữ hoa, chữ thường, số, kí tự đặc biệt" : "");
+    };
 
+    const onBlurConfirmPassword = () => {
+        let checkPassword = validateInputPassword(user.confirmPassword);
+        let checkConfirmPassword = user.password !== user.confirmPassword ? true : false;
+        validateFields(!checkConfirmPassword || !checkPassword, setErrorConfirmPassword, errorConfirmPassword, !checkPassword ? !checkConfirmPassword ? "Mật khẩu phải từ 8-50 ký tự, gồm chữ hoa, chữ thường, số, kí tự đặc biệt": "Mật khẩu xác nhận không đúng" :"");
+    };
     const handleSubmit = (event: any) => {
+        
         if (isValidateData()) {
             SignUpWithEmail(user.email, user.password, router, t)
         }
-    }
+    };
 
     return (
         <>
@@ -92,21 +112,25 @@ const SignInPage = () => {
                     <div className={styles.sign_in_wrapper}>
                         <div className={styles.form_sign_in}>
                             <Row className={styles.sign_in_input}>
-                                <Input placeholder="Enter your account" onChange={oncChangeUserName} onBlur={onBlurEmail} onPressEnter={handleSubmit} />
+                                <Input placeholder="Nhập email" onChange={oncChangeUserName} onBlur={onBlurEmail} onPressEnter={handleSubmit} value={user.email} />
                                 <MessageError isError={errorEmail.isError} message={errorEmail.message} />
                             </Row>
                             <Row className={styles.sign_in_input}>
-                                <Input.Password placeholder="Enter your password" onChange={onChangePassword} onBlur={onBlurPassword} onPressEnter={handleSubmit} />
+                                <Input.Password placeholder="Nhập mật khẩu" onChange={onChangePassword} onBlur={onBlurPassword} onPressEnter={handleSubmit} value={user.password} />
                                 <MessageError isError={errorPassword.isError} message={errorPassword.message} />
+                            </Row>
+                            <Row className={styles.sign_in_input}>
+                                <Input.Password placeholder="Xác nhận mật khẩu" onChange={onChangeConfirmPassword} onBlur={onBlurConfirmPassword} onPressEnter={handleSubmit} value={user.confirmPassword} />
+                                <MessageError isError={errorConfirmPassword.isError} message={errorConfirmPassword.message} />
                             </Row>
                             <Row >
                                 <Link style={{
                                     textDecoration: 'underline',
                                     color: '#14238A',
-                                }} href="/account/forgot-password.html">Forgot your password?</Link>
+                                }} href="/account/sign-in.html">Đã có tài khoản</Link>
                             </Row>
                             <Row >
-                                <Button className={styles.button_sign_in} type="primary" onClick={handleSubmit}>SIGN UP</Button>
+                                <Button className={styles.button_sign_in} type="primary" onClick={handleSubmit}>Đăng kí</Button>
                             </Row>
                         </div>
 

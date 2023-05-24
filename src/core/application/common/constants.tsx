@@ -20,6 +20,8 @@ import GroupedMenuItem from "./models/LeftMenu/GroupedItem";
 
 
 export default class Constant {
+    
+    static API_TOKEN_STORAGE: string = "API_TOKEN";
 
     static ToastMessage = class {
         static Notification = class {
@@ -189,22 +191,12 @@ export default class Constant {
         )
     }
 
-    static AuthErrorCodes = class {
-        static UserNotFound = {
-            code: AuthErrorCodes.USER_DELETED,
-            message: "User not found"
-        };
-        static InvalidPassword = {
-            code: AuthErrorCodes.INVALID_PASSWORD,
-            message: "Invalid password"
-        };
-        static UserDisable = {
-            code: AuthErrorCodes.USER_DISABLED,
-            message: "User disable"
-        };
-    }
-
     static configChart = {}
+
+    static Logger = class {
+        static DateTimeFormat = "yyyy-MM-DD HH:mm:ss.SSSS";
+        static DateFormat = "yyyy-MM-DD";
+    };
 
 
 }

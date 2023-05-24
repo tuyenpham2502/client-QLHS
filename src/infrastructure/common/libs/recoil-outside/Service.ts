@@ -12,7 +12,7 @@ const returnRecoil = new Subject();
  * @param stateValue Value to be set to the given recoilState
  * @returns 
  */
-export const setRecoilStateAsync = (recoilState:any, stateValue:any) => {
+export const setRecoilStateAsync =  (recoilState:any, stateValue:any) => {
     return new Promise(async (resolve, reject) => {
         setRecoil.next({ recoilObj: recoilState, value: stateValue })
         finishSetRecoil.subscribe({

@@ -2,13 +2,10 @@
 
 import React, { useState } from 'react';
 import styles from 'styles/pages/account/SignIn.module.css'
-import { Input, Button, Row, Col } from 'antd';
-import { useRouter } from 'next/router';
-import { auth } from '@/infrastructure/services/firebase';
-import { signInWithFacebook } from 'src/infrastructure/identity/account/SignInWithFaceBook';
-import { SignInWithEmail } from '@/infrastructure/identity/account/SignInWithEmail';
-import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { Input, Button, Row, Col } from 'antd';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 import { validateEmail } from '@/infrastructure/helpers/validate';
 import { MessageError } from '@/infrastructure/common/components/controls/message-error';
@@ -75,12 +72,6 @@ const SignInPage = () => {
         validateFields(!checkPassword, setErrorPassword, errorPassword, !checkPassword ? user.password ? "Mật khẩu không hợp lệ" : "Vui lòng nhập mật khẩu" : "");
     }
 
-    const handleSubmit = (event: any) => {
-        if (isValidateData()) {
-            SignInWithEmail(user.email, user.password, router, t)
-        }
-    }
-
     return (
         <>
             <NextSeo title={'Sign In'} />
@@ -91,21 +82,31 @@ const SignInPage = () => {
                     <div className={styles.sign_in_wrapper}>
                         <div className={styles.form_sign_in}>
                             <Row className={styles.sign_in_input}>
-                                <Input placeholder="Enter your account" onChange={oncChangeUserName} onBlur={onBlurEmail} onPressEnter={handleSubmit} />
+                                <Input placeholder="Nhập email" onChange={oncChangeUserName} onBlur={onBlurEmail} onPressEnter={handleSubmit} />
                                 <MessageError isError={errorEmail.isError} message={errorEmail.message} />
                             </Row>
                             <Row className={styles.sign_in_input}>
-                                <Input.Password placeholder="Enter your password" onChange={onChangePassword} onBlur={onBlurPassword} onPressEnter={handleSubmit} />
+                                <Input.Password placeholder="Nhập mật khẩu" onChange={onChangePassword} onBlur={onBlurPassword} onPressEnter={handleSubmit} />
                                 <MessageError isError={errorPassword.isError} message={errorPassword.message} />
                             </Row>
                             <Row >
-                                <Link style={{
-                                    textDecoration: 'underline',
-                                    color: '#14238A',
-                                }} href="/account/forgot-password.html">Forgot your password?</Link>
+                                <Col span={20}>
+                                    <Link style={{
+                                        textDecoration: 'underline',
+                                        color: '#14238A',
+                                    }} 
+                                    href="/account/forgot-password.html">Quên mật khẩu</Link>
+                                </Col>
+                                <Col>
+                                    <Link style={{
+                                        textDecoration: 'underline',
+                                        color: '#14238A',
+                                    }} 
+                                    href={"/account/sign-up.html"}>Đăng kí</Link>
+                                </Col>
                             </Row>
                             <Row >
-                                <Button className={styles.button_sign_in} type="primary" onClick={handleSubmit}>SIGN IN</Button>
+                                <Button className={styles.button_sign_in} type="primary" >Đăng nhập</Button>
                             </Row>
                         </div>
 

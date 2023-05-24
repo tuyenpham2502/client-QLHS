@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@types/node": "18.15.11",
@@ -18,10 +19,13 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "firebase": "^9.19.1",
+    "graphql-request": "^6.1.0",
     "i18next": "^22.4.14",
     "i18next-http-backend": "^2.2.0",
+    "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",
     "next": "13.3.0",
+    "next-cookies": "^2.0.3",
     "next-seo": "^6.0.0",
     "react": "18.2.0",
     "react-chartjs-2": "^5.2.0",
@@ -31,5 +35,12 @@
     "rxjs": "^7.8.1",
     "sharp": "^0.32.1",
     "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^4.0.0",
+    "@graphql-codegen/typescript": "^4.0.0",
+    "@graphql-codegen/typescript-operations": "^4.0.0",
+    "@graphql-codegen/typescript-react-query": "^4.1.0",
+    "graphql": "^16.6.0"
   }
 }
