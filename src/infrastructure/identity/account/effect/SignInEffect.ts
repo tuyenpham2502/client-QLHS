@@ -15,13 +15,12 @@ import { filterError } from "src/infrastructure/helpers";
 import CookieService from "src/infrastructure/services/CookieService";
 import LocalStorageService from "src/infrastructure/services/LocalStorageService";
 import LoggerService from "src/infrastructure/services/LoggerService";
-import { AccountManagementService } from "./service/AccountManagementService";
+import { AccountManagementService } from "../service/AccountManagementService";
 
 export const loginWithEmailAsync = async (
     translator: any,
     email: string,
     password: string,
-    captchaToken: string,
     router: NextRouter,
     loggerService: LoggerService,
     cookie: Cookie,
@@ -38,7 +37,7 @@ export const loginWithEmailAsync = async (
             await new AccountManagementService().signInWithEmailAsync(
                 LoginMutation,
                 cookie,
-                new SignInWithPasswordRequest(email, password, captchaToken),
+                new SignInWithPasswordRequest(email, password),
             );
         // Logged in ok, redirect to the home page
         if (response.status == 200) {
@@ -74,7 +73,7 @@ export const getMyProfileAsync = async (
     );
     if (response.status == 200) {
         let arrRoles = (response as SuccessResponse).data?.getMyProfile?.profiles[0]?.roles || []
-        if (arrRoles[0]?.name.toUpperCase() == RoleName.User) {
+        if (arrRoles[0]?.name.toUpperCase() !== RoleName.User) {
             notifyError(translator, translator("Bạn không có quyền truy cập."));
             await setRecoilStateAsync(ProfileState, {
                 data: {},

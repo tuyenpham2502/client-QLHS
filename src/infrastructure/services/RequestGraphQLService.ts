@@ -12,11 +12,11 @@ import Cookie from 'src/core/application/common/models/Cookies';
 import CookieService from './CookieService';
 import jwtDecode, { JwtPayload } from "jwt-decode";
 import LocalStorageService from './LocalStorageService';
-import Constants from 'src/core/application/common/Constants';
+import Constants from '@/core/application/common/Constants';
 
 export default class RequestGraphQLService implements IRequestGraphQLService {
     private readonly loggerService = new LoggerService();
-    private readonly baseURL = process.env.NEXT_PUBLIC_API_URL_GRAPHQL;
+    private readonly baseURL = "http://localhost:8000/graphql";
     private readonly cookieService = new CookieService();
     private readonly localStorageService = new LocalStorageService();
 
@@ -25,7 +25,8 @@ export default class RequestGraphQLService implements IRequestGraphQLService {
         let token = storage?.token || "";
         const opts = {
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
             }
         };
         return opts;
@@ -59,13 +60,14 @@ export default class RequestGraphQLService implements IRequestGraphQLService {
     async makePostRequestAsync(query: any, context: Cookie, variables?: Variables, isSetRecoil: boolean = true): Promise<RequestResponse> {
         //const setIsLoading = useSetRecoilState(LoadingState);
         try {
+            console.log("this.baseURL", this.baseURL);
             const _url = `${this.baseURL}`;
             if (isSetRecoil) {
                 await setRecoilStateAsync(LoadingState, { isLoading: true, uri: _url });
             }
 
             return this.processRequest(await new GraphQLClient(this.baseURL, this.getOptions(context)).rawRequest(query, variables));
-        } catch (e) {
+        } catch (e:any) {
 
             let expried = context?.token ? jwtDecode<JwtPayload>(context.token).exp : null;
             if (e.response?.Status == 500 && (e.response?.Payload?.Key == "ValidateJwtAsync" || e.response?.Payload?.Key == "InvokeAsync")) {

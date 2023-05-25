@@ -14,7 +14,7 @@ import LocalStorageService from './LocalStorageService';
 
 export default class RequestService implements IRequestService {
     private readonly loggerService = new LoggerService();
-    private readonly baseURL = process.env.NEXT_PUBLIC_API_URL;
+    private readonly baseURL = 'http://localhost:8000/graphql';
     private readonly localStorageService = new LocalStorageService();
 
     private getOptions(context: Cookie, file: boolean = false) {
@@ -23,6 +23,7 @@ export default class RequestService implements IRequestService {
         let opts: any = {
             headers: {
                 "Authorization": `Bearer ${token}`,
+                'Access-Control-Allow-Origin': 'http://localhost:8000/graphql',
             },
             // cancelToken: cancellationToken
         };
@@ -34,7 +35,6 @@ export default class RequestService implements IRequestService {
         return opts;
 
     }
-
 
     /**
      * Convert AxiosResponse to app request
@@ -80,13 +80,14 @@ export default class RequestService implements IRequestService {
     async makePostRequestAsync(endpoint: string, params: object, context: Cookie): Promise<RequestResponse> {
         //const setIsLoading = useSetRecoilState(LoadingState);
         try {
+            console.log("this.baseUrl", this.baseURL);
             const _url = `${this.baseURL}/${endpoint}`;
             await setRecoilStateAsync(LoadingState, { isLoading: true, uri: _url })
             const _params = JSON.stringify(params);
             const _options = this.getOptions(context, true);
             _options.headers["Content-Type"] = 'application/json';
             _options.headers["accept"] = 'text/xml';
-            return this.processRequest(await axios.post(_url, _params, _options));
+            return this.processRequest(await axios.post(this.baseURL, _params, _options));
         } catch (e:any) {
             // this.loggerService.error(e);
             // throw e;

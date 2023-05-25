@@ -10,9 +10,13 @@ import { NextSeo } from 'next-seo';
 import { validateEmail } from '@/infrastructure/helpers/validate';
 import { MessageError } from '@/infrastructure/common/components/controls/message-error';
 import { validateInputPassword } from '@/infrastructure/helpers/validate';
+import { getMyProfileAsync, loginWithEmailAsync } from '@/infrastructure/identity/account/effect/SignInEffect';
+import LoggerService from '@/infrastructure/services/LoggerService';
 
 
-const SignInPage = () => {
+const SignInPage = (context) => {
+    const loggerService = new LoggerService();
+    const [loading, setLoading] = useState<boolean>(false);
     const { t } = useTranslation('common');
     const router = useRouter();
     const [user, setUser] = useState({
@@ -72,6 +76,16 @@ const SignInPage = () => {
         validateFields(!checkPassword, setErrorPassword, errorPassword, !checkPassword ? user.password ? "Mật khẩu không hợp lệ" : "Vui lòng nhập mật khẩu" : "");
     }
 
+    const handleSubmit = (event: any) => {
+        if (isValidateData()) {
+            loginWithEmailAsync(t, user.email, user.password, router, loggerService, context.user, setLoading).then(
+                getMyProfileAsync(t, router,t ,loggerService, context.user, setLoading)
+            ).catch((error) => {
+                loggerService.error(error);
+            });
+        }
+    };
+
     return (
         <>
             <NextSeo title={'Sign In'} />
@@ -106,7 +120,7 @@ const SignInPage = () => {
                                 </Col>
                             </Row>
                             <Row >
-                                <Button className={styles.button_sign_in} type="primary" >Đăng nhập</Button>
+                                <Button className={styles.button_sign_in} type="primary" onClick={handleSubmit} >Đăng nhập</Button>
                             </Row>
                         </div>
 

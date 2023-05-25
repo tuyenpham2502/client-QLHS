@@ -21,6 +21,7 @@ import { ForgotPasswordRequest } from "src/core/application/dto/account/requests
 import { ChangePasswordForForgotRequest } from "src/core/application/dto/account/requests/ChangePasswordForForgotRequest";
 import { UpdateMyProfileRequest, UpdateMyProfileVer2Request } from "src/core/application/dto/profile/UpdateMyProfileRequest";
 import LocalStorageService from "src/infrastructure/services/LocalStorageService";
+import { SignUpPasswordReQuest } from "@/core/application/dto/account/requests/SignUpWithPassword";
 
 export class AccountManagementService implements IAccountManagementService {
 
@@ -28,7 +29,7 @@ export class AccountManagementService implements IAccountManagementService {
     private readonly cookieService = new CookieService();
     private readonly localStorageService = new LocalStorageService();
 
-    async signInWithOAuthAsync(query: RequestDocument, cookie: Cookie, variables:  SignInWithOAuthRequest): Promise<RequestResponse> {
+    async signInWithOAuthAsync(query: RequestDocument, cookie: Cookie, variables: SignInWithOAuthRequest): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
             if (result.status == 200) {
@@ -62,6 +63,26 @@ export class AccountManagementService implements IAccountManagementService {
                 return result as InvalidModelStateResponse
             }
             throw new NetworkException('No http status code handler');
+        } catch (e) {
+            this.loggerService.error(e);
+            throw e;
+        }
+    }
+
+    public async signUpWithEmailAsync(query: RequestDocument, cookie: Cookie, variables?: SignUpPasswordReQuest): Promise<RequestResponse> {
+        try {
+            let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
+            if (result.status == 200) {
+                return result as SuccessResponse;
+
+            }
+            if (result.status == 202) {
+                return result as FailureResponse;
+            }
+            if (result.status == 400) {
+                return result as InvalidModelStateResponse
+            }
+            throw new NetworkException('No http status code handler');  
         } catch (e) {
             this.loggerService.error(e);
             throw e;
@@ -128,7 +149,7 @@ export class AccountManagementService implements IAccountManagementService {
 
     }
 
-    public async getMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variable?: Variables): Promise<RequestResponse>{
+    public async getMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variable?: Variables): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
             if (result.status == 200) {
@@ -147,7 +168,7 @@ export class AccountManagementService implements IAccountManagementService {
         }
     }
 
-    public async updateMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variable?: UpdateMyProfileRequest): Promise<RequestResponse>{
+    public async updateMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variable?: UpdateMyProfileRequest): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
             if (result.status == 200) {
@@ -166,7 +187,7 @@ export class AccountManagementService implements IAccountManagementService {
         }
     }
 
-    public async updateMyProfileVer2AccountAsync(query: RequestDocument, cookie: Cookie, variable?: UpdateMyProfileVer2Request): Promise<RequestResponse>{
+    public async updateMyProfileVer2AccountAsync(query: RequestDocument, cookie: Cookie, variable?: UpdateMyProfileVer2Request): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
             if (result.status == 200) {
@@ -185,8 +206,8 @@ export class AccountManagementService implements IAccountManagementService {
         }
     }
 
-    public async changePasswordAsync(query: RequestDocument,cookie: Cookie, variable?: Variables): Promise<RequestResponse> {
-       
+    public async changePasswordAsync(query: RequestDocument, cookie: Cookie, variable?: Variables): Promise<RequestResponse> {
+
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
             if (result.status == 200) {
