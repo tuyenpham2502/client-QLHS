@@ -1,5 +1,6 @@
 import Constant from "@/core/application/common/Constants"
 import MessageErrors from "@/core/application/common/MessageError"
+var userRole:any = [];
 export const validateFields = ({isImplicitChange = false, key, isCheck, setError, error, message}:any) => {
     if (isImplicitChange) {
         error[key] = {
@@ -26,6 +27,13 @@ export const filterError = (errors: any) => {
     return "Đã có lỗi xảy ra. Vui lòng liên hệ quản trị viên để biết thêm thông tin chi tiết!";
 }
 
+export const getUserRole = () => {
+    return userRole;
+}
+
+export const setUserRole = (role) => {
+    userRole = role != null ? role : [];
+}
 
 
 

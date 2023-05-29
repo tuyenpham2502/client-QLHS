@@ -22,7 +22,7 @@ export default class RequestGraphQLService implements IRequestGraphQLService {
 
     private getOptions(context: Cookie) {
         let storage = this.localStorageService.readStorage(Constants.API_TOKEN_STORAGE);
-        let token = storage?.token || "";
+        let token = storage?.access_token || "";
         const opts = {
             headers: {
                 "Authorization": `Bearer ${token}`,
@@ -57,10 +57,9 @@ export default class RequestGraphQLService implements IRequestGraphQLService {
         }
     }
 
-    async makePostRequestAsync(query: any, context: Cookie, variables?: Variables, isSetRecoil: boolean = true): Promise<RequestResponse> {
+    async makePostRequestAsync(query: any, context: Cookie, variables: Variables, isSetRecoil: boolean = true): Promise<RequestResponse> {
         //const setIsLoading = useSetRecoilState(LoadingState);
         try {
-            console.log("this.baseURL", this.baseURL);
             const _url = `${this.baseURL}`;
             if (isSetRecoil) {
                 await setRecoilStateAsync(LoadingState, { isLoading: true, uri: _url });
@@ -69,7 +68,7 @@ export default class RequestGraphQLService implements IRequestGraphQLService {
             return this.processRequest(await new GraphQLClient(this.baseURL, this.getOptions(context)).rawRequest(query, variables));
         } catch (e:any) {
 
-            let expried = context?.token ? jwtDecode<JwtPayload>(context.token).exp : null;
+            let expried = context?.access_token ? jwtDecode<JwtPayload>(context.access_token).exp : null;
             if (e.response?.Status == 500 && (e.response?.Payload?.Key == "ValidateJwtAsync" || e.response?.Payload?.Key == "InvokeAsync")) {
                 this.localStorageService.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(false, '', ''));
             }

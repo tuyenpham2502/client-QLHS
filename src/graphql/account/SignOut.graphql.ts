@@ -1,6 +1,6 @@
 import {gql} from "graphql-request";
 
-export const SignOutMutation = gql`
+export const LogOutMutation = gql`
 query LogoutUser {
   logoutUser
 }

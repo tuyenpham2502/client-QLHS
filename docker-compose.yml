@@ -1,21 +1,17 @@
-version: '3.9'
+# docker-compose.yml
+
+version: "3"
 
 services:
-  qlhs-frontend:
-    image: qlhs-frontend:${version}
-    container_name: qlhs-frontend-${version}
-    restart: always
-    command: ${command}
+  web:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
+    container_name: web
+    restart: always
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/.next
     ports:
-      - "17010:17010"
-    networks:
-      default:
-        ipv4_address: 10.17.0.10
-## Network
-networks:
-  default:
-    external: true
-    name: qlhs-microservices-network.local
+      - 3000:3000

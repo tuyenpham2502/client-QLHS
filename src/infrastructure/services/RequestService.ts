@@ -11,19 +11,19 @@ import { setRecoilStateAsync, getRecoilStateAsync } from "src/infrastructure/com
 import Cookie from 'src/core/application/common/models/Cookies';
 import Constants from '@/core/application/common/Constants';
 import LocalStorageService from './LocalStorageService';
+import CookieService from './CookieService';
 
 export default class RequestService implements IRequestService {
     private readonly loggerService = new LoggerService();
     private readonly baseURL = 'http://localhost:8000/graphql';
     private readonly localStorageService = new LocalStorageService();
-
+    private readonly cookieService = new CookieService();
     private getOptions(context: Cookie, file: boolean = false) {
         let storage = this.localStorageService.readStorage(Constants.API_TOKEN_STORAGE);
-        let token = storage?.token || "";
+        let token = storage?.access_token || "";
         let opts: any = {
             headers: {
                 "Authorization": `Bearer ${token}`,
-                'Access-Control-Allow-Origin': 'http://localhost:8000/graphql',
             },
             // cancelToken: cancellationToken
         };

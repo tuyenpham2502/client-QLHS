@@ -11,7 +11,6 @@ const EarningsChart = ({earningData}:any) => {
         labels: earningData?.labels || [],
         datasets: earningData?.datasets || [],
     };
-    console.log("earningData", earningData);
     const options:any = { 
        
         scales:{

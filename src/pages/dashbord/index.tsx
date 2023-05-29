@@ -4,7 +4,8 @@ import { useRecoilValue } from "recoil";
 import dynamic from "next/dynamic";
 import { Button, Card, Col, DatePicker, Modal, Row } from "antd";
 import Image from "next/image";
-import moment from "moment";
+import { useTranslation } from "react-i18next";
+import { useRouter } from "next/router";
 import {
     LoadingOutlined
 } from "@ant-design/icons";
@@ -19,22 +20,60 @@ import iconStudentsDashboard from "/assets/icons/icon-students-dashboard.png";
 import iconTeachersDashboard from "/assets/icons/icon-teachers-dashboard.png";
 import iconParentsDashboard from "/assets/icons/icon-parents-dashboard.png";
 import iconEarningDashboard from "/assets/icons/icon-earning-dashboard.png";
+import { ProfileState } from "src/core/application/common/atoms/Identity/Profile/ProfileState"
+import { logOutAsync } from "@/infrastructure/identity/account/effect/LogOutEffect";
+import LoggerService from "@/infrastructure/services/LoggerService";
 
 
-
-
+const EarningsChartdd = dynamic(() => import('@/pages/dashbord/chart/earnings-chart'));
+const DialogProfileUser = dynamic(()=> import('@/infrastructure/common/components/dialog/dialogProfileUser'))
+const Dialog = dynamic(() => import("@/infrastructure/common/components/dialog/dialog"))
 
 const DashBoardPage = (context: any) => {
-    const EarningsChartdd = dynamic(() => import('@/pages/dashbord/chart/earnings-chart'));
-    const [profile,setProfile] = useState<any>({});
-    const [isOpenModal, setIsOpenModal] = useState(false);
+    const {t} = useTranslation('common');
+    const router = useRouter();
+    const loggerService = new LoggerService();
+    const dataProfile = useRecoilValue(ProfileState);
     const [date, setDate] = useState();
     const [dataEarning, setDataEarning] = useState({});
     const [isPending, startTransition] = useTransition();
+    const [isOpenModalProfile, setIsOpenModalProfile] = useState(false);
+    const [isOpenModalConfirm, setIsOpenModalConfirm] = useState(false);
     const totalValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(10000000);
     const feesValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(10000000);
 
-        
+    
+    useEffect(() => {
+        setIsOpenModalProfile(false);
+        if (dataProfile?.data) {
+            if (dataProfile?.data?.address == null && dataProfile?.data?.phoneNumber == null && dataProfile?.data?.birthDate == null) {
+                setIsOpenModalProfile(true);
+            }
+        }
+        else {
+            setIsOpenModalProfile(false);
+        }
+    }, [dataProfile?.data]);
+    
+
+    const handleLogOut = () => {
+        setIsOpenModalConfirm(true);
+    }
+
+    const handleCancelConfirmDialog = () => {
+        setIsOpenModalConfirm(false);
+    }
+
+    const handelOkConfirmDialog = async () => {
+        await logOutAsync(
+            t,
+            false,
+            router,
+            loggerService,
+            context
+        );
+    };
+
 
     const onChangeDate = (date: any, dateString: any) => {
         setDate(date);
@@ -312,9 +351,8 @@ const DashBoardPage = (context: any) => {
                     </Col>
                 </Row>
             </Col>
-            <Modal open={isOpenModal} >
-                sgsbs
-            </Modal>
+            <DialogProfileUser isOpenModalProfile={isOpenModalProfile} handleLogOut={handleLogOut} dataProfile={dataProfile}  />
+            <Dialog message="Are you sure you want to sign out?" isOpenModalConfirm={isOpenModalConfirm} handleCancel={handleCancelConfirmDialog} handleOk={handelOkConfirmDialog} />
 
 
 

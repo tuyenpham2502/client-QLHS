@@ -25,81 +25,29 @@
 // }
 
 export class UpdateMyProfileRequest {
-    avatarPhoto: string;
-    coverPhoto: string;
-    firstName: string;
-    gender: string;
-    lastName: string;
-    middleName: string;
-    nickName: string;
+    email: string;
+    name: string;
+    birthDate: string;
+    address: string;
     phoneNumber: string;
-    companyName: string;
-    companyAddress: string;
-    dateOfBirth: string;
-    taxCode: string;
-    cMND: string;
-    supplyDate: string;
-    supplyLocation: string;
-    // nameContact: string;
-    // fullNameContact: string;
-    // addressContact: string;
-    // phoneNumberContact: string;
-    // emailContact: string;
-    // landlineNumberContact: string;
-    // bankAccountNumber: string;
-    // bankName: string;
-    // branch: string;
-
+    photo: string;
+    
     constructor(
-        avatarPhoto: string,
-        coverPhoto: string,
-        firstName: string,
-        gender: string,
-        lastName: string,
-        middleName: string,
-        nickName: string,
+        name: string,
+        email: string,
+        birthDate: string,
+        address: string,
         phoneNumber: string,
-        companyName: string,
-        companyAddress: string,
-        dateOfBirth: string,
-        taxCode: string,
-        cMND: string,
-        supplyDate: string,
-        supplyLocation: string,
-        // nameContact: string,
-        // fullNameContact: string,
-        // addressContact: string,
-        // phoneNumberContact: string,
-        // emailContact: string,
-        // landlineNumberContact: string,
-        // bankAccountNumber: string,
-        // bankName: string,
-        // branch: string,
+        photo: string
+
+        
     ) {
-        this.avatarPhoto = avatarPhoto;
-        this.coverPhoto = coverPhoto;
-        this.firstName = firstName;
-        this.gender = gender;
-        this.lastName = lastName;
-        this.middleName = middleName;
-        this.nickName = nickName;
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+        this.address = address;
         this.phoneNumber = phoneNumber;
-        this.companyName = companyName;
-        this.companyAddress = companyAddress;
-        this.dateOfBirth = dateOfBirth;
-        this.taxCode = taxCode;
-        this.cMND = cMND;
-        this.supplyDate = supplyDate;
-        this.supplyLocation = supplyLocation;
-        // this.nameContact = nameContact;
-        // this.fullNameContact = fullNameContact;
-        // this.addressContact = addressContact;
-        // this.phoneNumberContact = phoneNumberContact;
-        // this.emailContact = emailContact;
-        // this.landlineNumberContact = landlineNumberContact;
-        // this.bankAccountNumber = bankAccountNumber;
-        // this.bankName = bankName;
-        // this.branch = branch;
+        this.photo = photo;
     }
 }
 

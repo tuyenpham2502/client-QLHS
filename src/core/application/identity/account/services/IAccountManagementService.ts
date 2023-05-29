@@ -52,10 +52,6 @@ export interface IAccountManagementService {
     */
   changePasswordForForgot(query: RequestDocument, cookie: Cookie, variables: ChangePasswordForForgotRequest): Promise<RequestResponse>
 
-  getMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variables: Variables): Promise<RequestResponse>
-
-  updateMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variables: UpdateMyProfileRequest): Promise<RequestResponse>
-
   changePasswordAsync(query: RequestDocument, cookie: Cookie, variables: Variables): Promise<RequestResponse>
 
 }

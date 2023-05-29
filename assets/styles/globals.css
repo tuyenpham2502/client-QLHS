@@ -106,8 +106,32 @@ a {
   }
 }
 
+.sign-up-input .ant-input, .ant-input-affix-wrapper{
+  background: rgba(128, 152, 249, 0.1);
+}
+
+
 .ant-input{
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+
+.full_page_loading {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.801);
+    z-index: 99999;
+};
+
+.ant-modal-title{
+  font-size: 20px !important;
+  font-weight: 500 !important;
 }
 
 .ant-card{
@@ -155,6 +179,9 @@ a {
     font-weight: 500;
 }
 
+.label-for-input{
+  width: fit-content;
+}
 
 .ant-layout-sider-children {
     width: 100% !important;

@@ -33,7 +33,7 @@ export class AccountManagementService implements IAccountManagementService {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
             if (result.status == 200) {
-                this.localStorageService.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(true, (result as SuccessResponse).data.signInWithOAuth?.token, (result as SuccessResponse).data.signInWithOAuth?.refreshToken));
+                this.localStorageService.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(true, (result as SuccessResponse).data.signInWithOAuth?.access_token, (result as SuccessResponse).data.signInWithOAuth?.refresh_token));
                 return result as SuccessResponse;
             }
             if (result.status == 202) {
@@ -53,7 +53,8 @@ export class AccountManagementService implements IAccountManagementService {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
             if (result.status == 200) {
-                this.localStorageService.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(true, (result as SuccessResponse).data?.signinWithPassword?.token, (result as SuccessResponse).data?.signinWithPassword?.refreshToken));
+                this.localStorageService.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(true, (result as SuccessResponse).data?.loginUser?.access_token, (result as SuccessResponse).data?.loginUser?.refresh_token));
+                // this.cookieService.setCookie(document, new Cookie(true, (result as SuccessResponse).data?.loginUser?.access_token, (result as SuccessResponse).data?.loginUser?.refresh_token));
                 return result as SuccessResponse;
             }
             if (result.status == 202) {
@@ -149,62 +150,6 @@ export class AccountManagementService implements IAccountManagementService {
 
     }
 
-    public async getMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variable?: Variables): Promise<RequestResponse> {
-        try {
-            let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
-            if (result.status == 200) {
-                return result as SuccessResponse;
-            }
-            if (result.status == 202) {
-                return result as FailureResponse;
-            }
-            if (result.status == 400) {
-                return result as InvalidModelStateResponse
-            }
-            throw new NetworkException('No http status code handler');
-        } catch (e) {
-            this.loggerService.error(e);
-            throw e;
-        }
-    }
-
-    public async updateMyProfileAccountAsync(query: RequestDocument, cookie: Cookie, variable?: UpdateMyProfileRequest): Promise<RequestResponse> {
-        try {
-            let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
-            if (result.status == 200) {
-                return result as SuccessResponse;
-            }
-            if (result.status == 202) {
-                return result as FailureResponse;
-            }
-            if (result.status == 400) {
-                return result as InvalidModelStateResponse
-            }
-            throw new NetworkException('No http status code handler');
-        } catch (e) {
-            this.loggerService.error(e);
-            throw e;
-        }
-    }
-
-    public async updateMyProfileVer2AccountAsync(query: RequestDocument, cookie: Cookie, variable?: UpdateMyProfileVer2Request): Promise<RequestResponse> {
-        try {
-            let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
-            if (result.status == 200) {
-                return result as SuccessResponse;
-            }
-            if (result.status == 202) {
-                return result as FailureResponse;
-            }
-            if (result.status == 400) {
-                return result as InvalidModelStateResponse
-            }
-            throw new NetworkException('No http status code handler');
-        } catch (e) {
-            this.loggerService.error(e);
-            throw e;
-        }
-    }
 
     public async changePasswordAsync(query: RequestDocument, cookie: Cookie, variable?: Variables): Promise<RequestResponse> {
 

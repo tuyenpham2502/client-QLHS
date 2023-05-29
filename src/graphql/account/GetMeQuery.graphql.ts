@@ -1,17 +1,21 @@
 import { gql } from "graphql-request";
 
 export const GetMeQuery = gql`
-getMe {
+query {
+  getMe {
     status
     user {
-      _id
       id
       email
       name
-      role
+      birthDate
+      address
+      phoneNumber
       photo
+      role
       updatedAt
       createdAt
     }
   }
+}
 `;

@@ -2,8 +2,8 @@ export class SignUpPasswordReQuest {
     name: string = "";
     email: string = "";
     password: string = "";
-    passwordConfirm = "";
-    role = "";
+    passwordConfirm:string = "";
+    role = "user";
     constructor(
         name: string,
         email: string,

@@ -9,13 +9,14 @@ import { SignInWithPasswordRequest } from "src/core/application/dto/account/requ
 import { RoleName } from "src/core/domain/enums/Roles";
 import { LoginMutation } from "src/graphql/account/LoginMutation.graphql";
 import { GetMeQuery } from "src/graphql/account/GetMeQuery.graphql";
-import { notifyError } from "src/infrastructure/common/components/controls/toast/toast-message";
+import { notifyError, notifySuccess } from "src/infrastructure/common/components/controls/toast/toast-message";
 import { setRecoilStateAsync } from "src/infrastructure/common/libs/recoil-outside/Service";
 import { filterError } from "src/infrastructure/helpers";
 import CookieService from "src/infrastructure/services/CookieService";
 import LocalStorageService from "src/infrastructure/services/LocalStorageService";
 import LoggerService from "src/infrastructure/services/LoggerService";
 import { AccountManagementService } from "../service/AccountManagementService";
+import { ProfileManagementService } from "../../profile/service/ProfileManagementService";
 
 export const loginWithEmailAsync = async (
     translator: any,
@@ -42,6 +43,7 @@ export const loginWithEmailAsync = async (
         // Logged in ok, redirect to the home page
         if (response.status == 200) {
             // router.push("/");
+            notifySuccess(translator, translator("Login successfully!"));
             return response
         }
         if (response.status == 202) {
@@ -67,17 +69,18 @@ export const getMyProfileAsync = async (
     setLoading: Function,
 ) => {
     const localStorageService = new LocalStorageService();
-    let response = await new AccountManagementService().getMyProfileAccountAsync(
+    const cookieService = new CookieService();
+    let response = await new ProfileManagementService().getMyProfileAccountAsync(
         GetMeQuery,
         cookie,
     );
     if (response.status == 200) {
-        let arrRoles = (response as SuccessResponse).data?.getMyProfile?.profiles[0]?.roles || []
-        if (arrRoles[0]?.name.toUpperCase() !== RoleName.User) {
+        let arrRoles = (response as SuccessResponse).data?.roles || []
+        if (arrRoles[0]?.name.toUpperCase() == RoleName.User) {
             notifyError(translator, translator("Bạn không có quyền truy cập."));
             await setRecoilStateAsync(ProfileState, {
                 data: {},
-            });
+            });           
             localStorageService.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(false, '', ''));
             router.push("/account/sign-in.html");
         } else {
@@ -88,18 +91,18 @@ export const getMyProfileAsync = async (
                 });
             }
             setUserRole(arr);
-            setRecoilStateAsync(RoleNameLoginState, {
+            await setRecoilStateAsync(RoleNameLoginState, {
                 data: arr
             })
-            setRecoilStateAsync(ProfileState, {
-                data: (response as SuccessResponse).data.getMyProfile.profiles
+            await setRecoilStateAsync(ProfileState, {
+                data: (response as SuccessResponse).data?.getMe?.user
             })
-            setRecoilStateAsync(UserLoginIdState, {
-                data: (response as SuccessResponse).data.getMyProfile.id
-            })
-            setRecoilStateAsync(TenantIdState, {
-                data: (response as SuccessResponse).data.getMyProfile.tenantId
-            })
+            // setRecoilStateAsync(UserLoginIdState, {
+            //     data: (response as SuccessResponse).data.getMyProfile.id
+            // })
+            // setRecoilStateAsync(TenantIdState, {
+            //     data: (response as SuccessResponse).data.getMyProfile.tenantId
+            // })
             router.push('/');
         }
         setTimeout(() => {

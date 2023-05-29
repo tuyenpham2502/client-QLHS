@@ -4,7 +4,7 @@ import { AccountManagementService } from "../service/AccountManagementService";
 import { SignUpMutation } from "@/graphql/account/SignUpMutation.graphql";
 import { SignUpPasswordReQuest } from "@/core/application/dto/account/requests/SignUpWithPassword";
 import FailureResponse from "@/core/application/dto/common/responses/FailureResponse";
-import { notifyError } from "@/infrastructure/common/components/controls/toast/toast-message";
+import { notifyError, notifySuccess } from "@/infrastructure/common/components/controls/toast/toast-message";
 import LoggerService from "src/infrastructure/services/LoggerService";
 import InvalidModelStateResponse from "@/core/application/dto/common/responses/InvalidModelStateResponse";
 import { filterError } from "@/infrastructure/helpers";
@@ -28,7 +28,8 @@ export const signUpWithEmailAsync = async (
             new SignUpPasswordReQuest(name, email, password, passwordConfirm)
         );
         if(response.status == 200) {
-            // router.push("/");
+            router.push("/account/sign-in.html");
+            notifySuccess(translator, "Sign up successfully");
             return response;
         }
         if(response.status == 202) {

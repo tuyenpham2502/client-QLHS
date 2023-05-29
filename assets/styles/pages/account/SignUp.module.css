@@ -1,0 +1,78 @@
+.content_sign_up {
+    height: 100vh;
+}
+
+.content_sign_up .left_content {
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_sign_up .right_content {
+    background-color: #6172F3;
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.left_content .sign_up_wrapper {
+    max-width: 600px;
+}
+
+.sign_up_wrapper .form_sign_up {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form_sign_up .title_sign_up_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.form_sign_up .title_sign_up_description {
+    font-size: 20px;
+    color: #71717A;
+}
+
+.form_sign_up .title_sign_up {
+    font-size: 40px;
+}
+
+.form_sign_up .sign_up_input_wrapper {
+   max-height: 160px;
+}
+
+.form_sign_up .sign_up_input_wrapper .sign_up_input {
+    height: 56px;
+}
+
+.form_sign_up .sign_up_accept_term{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #71717A;
+}
+
+.form_sign_up .button_sign_up {
+    height: 64px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.right_content .sign_up_about{
+    color: #E0EAFF;
+    font-size: 20px;
+}
+
+.right_content .sign_up_about_description{
+    color: rgba(224, 234, 255, 0.75);
+    font-size: 16px;
+}

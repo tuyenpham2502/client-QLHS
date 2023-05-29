@@ -13,7 +13,6 @@ import iconSetting from 'assets/icons/icon-setting.png'
 import Menu from "@/core/application/common/models/LeftMenu/Menu";
 import MenuItem from "@/core/application/common/models/LeftMenu/MenuItem";
 import { MenuKeys } from "@/core/domain/enums/MenuKeys";
-import { AuthErrorCodes } from "firebase/auth";
 import type { NotificationPlacement } from 'antd/es/notification/interface';
 import GroupedMenuItem from "./models/LeftMenu/GroupedItem";
 
@@ -22,7 +21,8 @@ import GroupedMenuItem from "./models/LeftMenu/GroupedItem";
 export default class Constant {
     
     static API_TOKEN_STORAGE: string = "API_TOKEN";
-
+    static ACCESS_TOKEN: string ="access_token";
+    
     static ToastMessage = class {
         static Notification = class {
             static Position: NotificationPlacement = "topRight";

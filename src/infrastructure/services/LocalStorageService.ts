@@ -9,9 +9,9 @@ export default class LocalStorageService implements ILocalStorageService {
             let storage = localStorage.getItem(key);
             if (storage && storage.length) {
                 return new Cookie(
-                    JSON.parse(storage).isAuthenticated,
-                    JSON.parse(storage).token,
-                    JSON.parse(storage).refreshToken
+                    JSON.parse(storage).logged_in,
+                    JSON.parse(storage).access_token,
+                    JSON.parse(storage).refresh_token
                 );
             }
         }

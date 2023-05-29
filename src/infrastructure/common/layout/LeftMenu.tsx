@@ -15,7 +15,6 @@ const LeftMenu = ({ context, translator }: any) => {
     const [collapsed, setCollapsed] = useState(false);
     const root = Constant.MenuConfig.MainMenu;
 
-    console.log("context", context);
     const onOpenChange = (keys: any) => {
         const latestOpenKey = keys.find((key: any) => openKeys?.indexOf(key) === -1);
         if (MenuSubKeys.indexOf(latestOpenKey) === -1) {
