@@ -106,8 +106,94 @@ a {
   }
 }
 
-.ant-input{
-  border-radius: 5px;
-  
+.sign-up-input .ant-input, .ant-input-affix-wrapper{
+  background: rgba(128, 152, 249, 0.1);
 }
+
+
+.ant-input{
+  border-radius: 10px;
+}
+
+
+.full_page_loading {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.801);
+    z-index: 99999;
+};
+
+.ant-modal-title{
+  font-size: 20px !important;
+  font-weight: 500 !important;
+}
+
+.ant-card{
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.page-title{
+  margin-bottom: 16px;
+}
+
+.page-location{
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+.page-breadcrumb{
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  color: #D60A0B !important;
+}
+
+.page-content{
+  margin-top: 16px;
+  background-color: #ffff;
+  padding: 20px;
+}
+
+.page-content .page-content-title{
+  font-size: 22px;
+  font-weight: 500;
+  color: #000000;
+
+}
+
+.require {
+  color: #D60A0B;
+}
+
+.date-picker-no-border .ant-picker-suffix{
+  display: none;
+}
+.date-picker-no-border .ant-picker-input > input{
+    font-size: 18px;
+    color: #A3A3A3;
+    font-weight: 500;
+}
+
+.label-for-input{
+  width: fit-content;
+}
+
+.ant-layout-sider-children {
+    width: 100% !important;
+}
+
+
+.ant-layout-sider-trigger .anticon.anticon-left svg {
+    color: black !important;
+}
+
+.ant-layout-sider-trigger .anticon.anticon-right svg {
+    color: black !important;
+}
+
 

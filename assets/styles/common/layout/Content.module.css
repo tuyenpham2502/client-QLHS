@@ -12,8 +12,8 @@
     flex: 1;
     display: flex;
     position: relative;
-    margin-bottom: 10px;
     flex-direction: column;
+    margin : 50px 30px;
 }
 
 .main_layout_background::-webkit-scrollbar {

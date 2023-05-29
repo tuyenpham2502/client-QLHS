@@ -21,6 +21,6 @@
       "styles/*": ["assets/styles/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "graphql/account/SignUpMutation.graphql.ts"],
   "exclude": ["node_modules"]
 }

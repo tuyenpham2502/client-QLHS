@@ -1,7 +1,7 @@
-import Constant from "@/core/application/common/constants"
-
-
-export const validateFields = (isImplicitChange = false, key, isCheck, setError, error, message) => {
+import Constant from "@/core/application/common/Constants"
+import MessageErrors from "@/core/application/common/MessageError"
+var userRole:any = [];
+export const validateFields = ({isImplicitChange = false, key, isCheck, setError, error, message}:any) => {
     if (isImplicitChange) {
         error[key] = {
             isError: isCheck,
@@ -19,15 +19,22 @@ export const validateFields = (isImplicitChange = false, key, isCheck, setError,
 
 };
 
-export const AuthErrors = (error: string) => {
-    let authCodes = Constant.AuthErrorCodes;
-    switch (error) {
-        case authCodes.UserNotFound.code:
-            return authCodes.UserNotFound.message;
-        case authCodes.InvalidPassword.code:
-            return authCodes.InvalidPassword.message;
-        case authCodes.UserDisable.code:
-            return authCodes.UserDisable.message;
+export const filterError = (errors: any) => {
+    if (errors && errors.length) {
+        const messageError = MessageErrors.Data.filter(it => it.code == errors[0]?.extensions?.code)
+        return messageError[0]?.message || "Đã có lỗi xảy ra. Vui lòng liên hệ quản trị viên để biết thêm thông tin chi tiết!";
     }
+    return "Đã có lỗi xảy ra. Vui lòng liên hệ quản trị viên để biết thêm thông tin chi tiết!";
+}
 
-};
+export const getUserRole = () => {
+    return userRole;
+}
+
+export const setUserRole = (role) => {
+    userRole = role != null ? role : [];
+}
+
+
+
+

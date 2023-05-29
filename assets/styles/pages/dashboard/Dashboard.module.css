@@ -1,0 +1,88 @@
+
+.page_content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.page_content .card_overview  {
+}
+
+.card_overview .card_overview_content {
+    display: flex;
+    align-items: center;
+}
+
+.card_overview .card_overview_content .card_overview_content_items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card_overview .card_overview_info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.card_overview .card_overview_content_title{
+    font-size: 18px;
+    color: #A3A3A3;
+    font-weight: 500;
+}
+
+.card_overview .card_overview_content_value{
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.page_content .card_detail{
+    min-height: 300px;
+}
+
+.card_detail .card_detail_content_value{
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000;
+}
+
+.card_detail .card_detail_earning_title{
+    font-size: 16px;
+    color: #A3A3A3;
+    font-weight: 500;
+}
+
+.card_detail .card_detail_content_title{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.card_detail .card_expenses_earning_title{
+    font-size: 16px;
+    color: #A3A3A3;
+    font-weight: 500;
+}
+
+.card_detail .card_expenses_value{
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.card_detail .chart_css {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card_detail .bar_chart{
+     display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.card_detail .block_chart{
+    display: flex;
+    flex-direction: column;
+}

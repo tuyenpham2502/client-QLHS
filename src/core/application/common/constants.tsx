@@ -2,7 +2,7 @@ import {
     MenuTheme
 } from "antd";
 import Image from 'next/image'
-import iconDashBorad from 'assets/icons/icon-dashBoard.png'
+import iconDashBoard from 'assets/icons/icon-dashBoard.png'
 import iconStudent from 'assets/icons/icon-student.png'
 import iconArrow from 'assets/icons/icon-arrow.png'
 import iconParents from 'assets/icons/icon-parents.png'
@@ -13,14 +13,16 @@ import iconSetting from 'assets/icons/icon-setting.png'
 import Menu from "@/core/application/common/models/LeftMenu/Menu";
 import MenuItem from "@/core/application/common/models/LeftMenu/MenuItem";
 import { MenuKeys } from "@/core/domain/enums/MenuKeys";
-import { AuthErrorCodes } from "firebase/auth";
 import type { NotificationPlacement } from 'antd/es/notification/interface';
 import GroupedMenuItem from "./models/LeftMenu/GroupedItem";
 
 
 
 export default class Constant {
-
+    
+    static API_TOKEN_STORAGE: string = "API_TOKEN";
+    static ACCESS_TOKEN: string ="access_token";
+    
     static ToastMessage = class {
         static Notification = class {
             static Position: NotificationPlacement = "topRight";
@@ -41,7 +43,7 @@ export default class Constant {
                 new MenuItem(
                     [],
                     MenuKeys.Dashboard,
-                    <Image src={iconDashBorad} alt='Dashboard' />,
+                    <Image src={iconDashBoard} alt='Dashboard' />,
                     "Dashboard",
                     "Dashboard",
                     [],
@@ -49,7 +51,7 @@ export default class Constant {
                 ),
                 new GroupedMenuItem(
                     [],
-                    MenuKeys.Student,
+                    MenuKeys.Students,
                     <Image src={iconStudent} alt='Student' />,
                     "Students",
                     "Students",
@@ -62,25 +64,25 @@ export default class Constant {
                             "All Students",
                             "All Students",
                             [],
-                            "/account/all-student"
+                            "/students/all-students"
                         ),
                         new MenuItem(
                             [],
-                            MenuKeys.AddStudent,
+                            MenuKeys.AddStudents,
                             <Image src={iconArrow} alt='Arrow' />,
                             "Add Students",
                             "Add Students",
                             [],
-                            "/account/add-student"
+                            "/students/add-students"
                         ),
                         new MenuItem(
                             [],
-                            MenuKeys.StudentPromotion,
+                            MenuKeys.PromotionStudents,
                             <Image src={iconArrow} alt='Arrow' />,
                             "Students Promotion",
                             "Students Promotion",
                             [],
-                            "/account/edit-student"
+                            "/students/students-promotion"
                         )
                     ]
                 ),
@@ -169,12 +171,12 @@ export default class Constant {
                 ),
                 new MenuItem(
                     [],
-                    MenuKeys.Subject,
+                    MenuKeys.Subjects,
                     <Image src={iconSubject} alt='Subject' />,
-                    "Subject",
-                    "Subject",
+                    "Subjects",
+                    "Subjects",
                     [],
-                    "/subject"
+                    "/subjects"
                 ),
                 new MenuItem(
                     [],
@@ -189,20 +191,12 @@ export default class Constant {
         )
     }
 
-    static AuthErrorCodes = class {
-        static UserNotFound = {
-            code: AuthErrorCodes.USER_DELETED,
-            message: "User not found"
-        };
-        static InvalidPassword = {
-            code: AuthErrorCodes.INVALID_PASSWORD,
-            message: "Invalid password"
-        };
-        static UserDisable = {
-            code: AuthErrorCodes.USER_DISABLED,
-            message: "User disable"
-        };
-    }
+    static configChart = {}
+
+    static Logger = class {
+        static DateTimeFormat = "yyyy-MM-DD HH:mm:ss.SSSS";
+        static DateFormat = "yyyy-MM-DD";
+    };
 
 
 }

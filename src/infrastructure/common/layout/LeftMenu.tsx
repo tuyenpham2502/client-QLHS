@@ -6,23 +6,22 @@ import Image from 'next/image'
 import { MenuUI, MenuItemUI, SubMenuUI } from "@/infrastructure/common/components/menu/menu";
 import { MenuSubKeys } from "@/core/domain/enums/MenuKeys";
 import MenuItem from "@/core/application/common/models/LeftMenu/MenuItem";
-import Constant from "@/core/application/common/constants";
+import Constant from "@/core/application/common/Constants";
 import styles from 'assets/styles/common/layout/LeftMenu.module.css'
 import GroupedMenuItem from "@/core/application/common/models/LeftMenu/GroupedItem";
 const LeftMenu = ({ context, translator }: any) => {
     const router = useRouter();
-    const [openKeys, setOpenKeys] = useState(context?.openKeys);
+    const [openKeys, setOpenKeys] = useState(context.openKeys);
     const [collapsed, setCollapsed] = useState(false);
     const root = Constant.MenuConfig.MainMenu;
 
-
     const onOpenChange = (keys: any) => {
-        const latestOpenKey = keys.find(((key: any) => openKeys?.indexOf(key) === -1));
+        const latestOpenKey = keys.find((key: any) => openKeys?.indexOf(key) === -1);
         if (MenuSubKeys.indexOf(latestOpenKey) === -1) {
             setOpenKeys(keys);
         } else {
             setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
-        }
+        }           
     };
 
 
@@ -59,7 +58,7 @@ const LeftMenu = ({ context, translator }: any) => {
                                 </MenuItemUI>
                             )
                                 }
-                            else if (value.type === 'group') {
+                            if (value.type === 'group') {
                                 const item = value as GroupedMenuItem;
                                 return (
                                     <SubMenuUI
@@ -69,16 +68,16 @@ const LeftMenu = ({ context, translator }: any) => {
                                     >
                                         {
                                             item.items?.map((sValue: any) => {
-                                                const item = sValue as MenuItem;
+                                                const subItem = sValue as MenuItem;
                                                 return (
                                                     <MenuItemUI
-                                                        key={item.key}
-                                                        icon={item.icon}
+                                                        key={subItem.key}
+                                                        icon={subItem.icon}
                                                         onClick={() => {
-                                                            router.push(item.hyperlink);
+                                                            router.push(subItem.hyperlink);
                                                         }}
                                                     >
-                                                        {item.displayText}
+                                                        {subItem.displayText}
                                                     </MenuItemUI>
                                                 )
                                             })

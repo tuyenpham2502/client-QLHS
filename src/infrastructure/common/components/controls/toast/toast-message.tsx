@@ -1,6 +1,6 @@
 import { notification } from "antd";
 import type { NotificationPlacement } from 'antd/es/notification/interface';
-import Constants from "src/core/application/common/constants";
+import Constants from "@/core/application/common/Constants";
 /**
  * Show toast message, if you leave the message as null or empty, it will show title only
  * @param translator
@@ -10,7 +10,7 @@ import Constants from "src/core/application/common/constants";
 export const notifyInfo = (translator: any, title: string, message?: string) => {
     if (message == null || message.length == 0) {
         notification.info({
-            message: translator('toast-info'),
+            message: translator('Info'),
             description: title,
             placement: Constants.ToastMessage.Notification.Position,
             duration: Constants.ToastMessage.Notification.Duration,
@@ -28,7 +28,7 @@ export const notifyInfo = (translator: any, title: string, message?: string) => 
 export const notifySuccess = (translator: any, title: any, message?: string) => {
     if (message == null || message.length == 0) {
         notification.success({
-            message: translator('Thành công'),
+            message: translator('Success'),
             description: title,
             placement: Constants.ToastMessage.Notification.Position,
             duration: Constants.ToastMessage.Notification.Duration,
@@ -47,7 +47,7 @@ export const notifySuccess = (translator: any, title: any, message?: string) => 
 export const notifyError = (translator: any, title: any, message?: any) => {
     if (message == null || message.length == 0) {
         notification.error({
-            message: translator('Lỗi'),
+            message: translator('Error'),
             description: title,
             placement: Constants.ToastMessage.Notification.Position,
             duration: Constants.ToastMessage.Notification.Duration,
@@ -66,7 +66,7 @@ export const notifyError = (translator: any, title: any, message?: any) => {
 export const notifyWarning = (translator: any, title: any, message?: string, duration: number = Constants.ToastMessage.Notification.Duration, placement: NotificationPlacement = Constants.ToastMessage.Notification.Position) => {
     if (message == null || message.length == 0) {
         notification.warning({
-            message: translator('Cảnh báo'),
+            message: translator('Warning'),
             description: title,
             placement: placement,
             duration: duration,

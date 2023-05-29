@@ -1,4 +1,9 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { Layout, Button, Row, Col, Avatar, Dropdown, } from 'antd';
+import { useRouter } from 'next/router';
+import type { MenuProps } from 'antd';
+import { useTranslation } from 'react-i18next';
 import {
     LogoutOutlined,
     SearchOutlined,
@@ -7,28 +12,16 @@ import {
     LineOutlined,
     UserOutlined
 } from '@ant-design/icons';
-import { Layout, Button, Row, Col, Avatar, Dropdown, } from 'antd';
-import type { MenuProps } from 'antd';
 import { InputText } from '@/infrastructure/common/components/controls/input';
-import { auth } from '@/infrastructure/services/firebase';
-import { signOut } from 'firebase/auth';
-import { useRouter } from 'next/router';
 import { BoldText } from '../components/controls/text';
+import { logOutAsync } from 'src/infrastructure/identity/account/effect/LogOutEffect';
 import styles from 'assets/styles/common/layout/Header.module.css'
-import Link from 'next/link';
+import LoggerService from '@/infrastructure/services/LoggerService';
 const Header = ({ context, translator, ...props }: any) => {
-
+    const { t } = useTranslation('common');
     const router = useRouter();
     const [textSearch, setTextSearch] = useState('');
-
-
-    const handleSignOut = () => {
-        signOut(auth).then(() => {
-            router.push('/account/sign-in.html');
-        }).catch((error: any) => {
-            console.log(error);
-        });
-    }
+    const loggerService = new LoggerService();
 
     const onChange = (e: any) => {
         setTextSearch(e.target.value);
@@ -38,31 +31,39 @@ const Header = ({ context, translator, ...props }: any) => {
         setTextSearch(textSearch.trim());
     }
 
+    const onLogout = async () => {
+        await logOutAsync(
+            t,
+            false,
+            router,
+            loggerService,
+            context
+        );
+    }
+
+
+
     const items: MenuProps['items'] = [
         {
             key: '1',
             label: (
-                <div>
-                    <Link href="/account/profile.html">
+                    <Link href="/profile">
                         <BoldText>Profile</BoldText>
                     </Link>
-                </div>
             ),
         },
         {
             key: '2',
             label: (
-                <div>
-                    <Link href="/account/change-password.html">
+                    <Link href="/authenticate/change-password.html">
                         <BoldText>Change Password</BoldText>
                     </Link>
-                </div>
             ),
         },
         {
             key: '3',
             label: (
-                <div onClick={handleSignOut}>
+                <div onClick={onLogout}>
                     <BoldText>Sign Out</BoldText>
                 </div>
             ),

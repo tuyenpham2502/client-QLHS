@@ -1,0 +1,115 @@
+.content_sign_in {
+    height: 100vh;
+}
+
+.line {
+    border: 1px solid #71717A;
+    height: 1px;
+}
+
+.content_sign_in .left_content {
+    background-color: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_sign_in .right_content {
+    background-color: #6172F3;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+
+    align-items: center;
+}
+
+.left_content .sign_in_wrapper {
+    max-width: 600px;
+}
+
+.sign_in_wrapper .form_sign_in {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form_sign_in .sign_in_withO_wrapper{
+    
+}
+
+.form_sign_in .sign_in_withO_wrapper .sign_in_withO{
+    height: 60px;
+    width: 200px;
+    border: 2px solid rgba(128, 152, 249, 0.5);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.form_sign_in .sign_in_withO_wrapper .sign_in_withO:hover{
+    border: 2px solid rgba(128, 152, 249, 1);
+}
+
+.sign_in_withO .sign_in_withO_text {
+    font-size: 18px;
+    color: #09090B;
+    font-weight: 500;
+}
+
+.form_sign_in .sign_in_option_about{
+    justify-content: center;
+    display: flex;
+}
+
+.form_sign_in .title_sign_in_wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.form_sign_in .title_sign_in_description {
+    font-size: 20px;
+    color: #71717A;
+}
+
+.form_sign_in .title_sign_in {
+    font-size: 40px;
+}
+
+.form_sign_in .sign_in_input_wrapper {
+   max-height: 160px;
+}
+
+.form_sign_in .sign_in_input_wrapper .sign_in_input {
+    height: 56px;
+}
+
+.form_sign_in .sign_in_accept_term{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    color: #71717A;
+}
+
+.form_sign_in .button_sign_in {
+    height: 64px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.right_content .sign_in_about{
+    color: #E0EAFF;
+    font-size: 20px;
+}
+
+.right_content .sign_in_about_description{
+    color: rgba(224, 234, 255, 0.75);
+    font-size: 16px;
+}
