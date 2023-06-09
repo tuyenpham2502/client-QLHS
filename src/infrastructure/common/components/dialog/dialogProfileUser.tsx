@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Modal, Row } from "antd";
-import ProfileInput from "@/infrastructure/common/components/input/input-text";
+import ProfileInput from "@/infrastructure/common/components/profile/input/input-text";
 import styles from "assets/styles/pages/profile/updateProfile.module.css"
 import ProfileDatePicker from "../account/date-picker";
 import { updateMyProfile } from "@/infrastructure/identity/profile/effect/UpdateMyProfile";
 import { useTranslation } from "react-i18next";
 import LoggerService from "@/infrastructure/services/LoggerService";
-import { UpdateMyProfileRequest } from "@/core/application/dto/profile/UpdateMyProfileRequest";
+import { UpdateMyProfileRequest } from "@/core/application/dto/profile/request/UpdateMyProfileRequest";
 import { useRouter } from "next/router";
 import { FullPageLoading } from "../controls/loading";
 type Props = {
@@ -16,9 +16,9 @@ type Props = {
 }
 
 const DialogProfileUser = (props: Props, context: any) => {
+    const { isOpenModalProfile, handleLogOut, dataProfile } = props;
     const { t } = useTranslation();
     const loggerService = new LoggerService();
-    const { isOpenModalProfile, handleLogOut, dataProfile } = props;
     const router = useRouter();
     const [_dataUser, _setDataUser] = useState<any>({});
     const dataUser = _dataUser;

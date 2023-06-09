@@ -1,0 +1,13 @@
+.all_student_form{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+.student_title{
+    margin-bottom: 12px;
+}
+
+.text_link_studentId{
+    color: #1890ff;
+    cursor: pointer;
+}

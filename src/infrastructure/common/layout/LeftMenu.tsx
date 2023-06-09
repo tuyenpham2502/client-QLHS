@@ -9,6 +9,7 @@ import MenuItem from "@/core/application/common/models/LeftMenu/MenuItem";
 import Constant from "@/core/application/common/Constants";
 import styles from 'assets/styles/common/layout/LeftMenu.module.css'
 import GroupedMenuItem from "@/core/application/common/models/LeftMenu/GroupedItem";
+
 const LeftMenu = ({ context, translator }: any) => {
     const router = useRouter();
     const [openKeys, setOpenKeys] = useState(context.openKeys);
@@ -49,7 +50,7 @@ const LeftMenu = ({ context, translator }: any) => {
                             return (
                                 <MenuItemUI
                                     key={item.key}
-                                    icon={item.icon}
+                                    allowedPermissions={item.allowedPermissions}                                   icon={item.icon}
                                     onClick={() => {
                                         router.push(item.hyperlink);
                                     }}
@@ -63,6 +64,7 @@ const LeftMenu = ({ context, translator }: any) => {
                                 return (
                                     <SubMenuUI
                                         key={item.key}
+                                        allowedPermissions={item.allowedPermissions}
                                         icon={item.icon}
                                         title={item.displayText}
                                     >
@@ -71,6 +73,7 @@ const LeftMenu = ({ context, translator }: any) => {
                                                 const subItem = sValue as MenuItem;
                                                 return (
                                                     <MenuItemUI
+                                                        allowedPermissions={subItem.allowedPermissions}
                                                         key={subItem.key}
                                                         icon={subItem.icon}
                                                         onClick={() => {

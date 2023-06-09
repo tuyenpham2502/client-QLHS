@@ -31,13 +31,13 @@ const ProfileDatePicker = (props: DatePickerProps) => {
     }, [dataUserAttribute]);
 
     return (
-        <Row className={styles.input_update_profile_wrapper}>
+        <Row className={styles.input_profile_wrapper}>
             <label htmlFor={id} className="label-for-input">
                 <NormalText className={styles.label_input}>
                     {label} {isRequired ? <span className="require">*</span> : null}
                 </NormalText>
             </label>
-            <DatePicker id={id} value={date} onChange={onChangeDate} format="DD/MM/YYYY" className={styles.input_update_profile} placeholder={"Enter " + labelLower} />
+            <DatePicker id={id} value={date} onChange={onChangeDate} format="DD/MM/YYYY" className={styles.input_profile} placeholder={"Enter " + labelLower} />
         </Row>
     )
 };

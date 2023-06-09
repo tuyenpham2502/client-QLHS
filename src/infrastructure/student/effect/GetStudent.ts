@@ -7,47 +7,48 @@ import { UpdateMyProfileMutation } from "@/graphql/my-profile/UpdateMyProfile.gr
 import { notifySuccess, notifyError } from "@/infrastructure/common/components/controls/toast/toast-message";
 import { filterError } from "@/infrastructure/helpers";
 import LoggerService from "src/infrastructure/services/LoggerService";
-import { ProfileManagementService } from "../service/ProfileManagementService";
 import { NextRouter } from "next/router";
 import { setRecoilStateAsync } from "@/infrastructure/common/libs/recoil-outside/Service";
 import { ProfileState } from "@/core/application/common/atoms/Identity/Profile/ProfileState";
 import LocalStorageService from "@/infrastructure/services/LocalStorageService";
+import { CreateStudentRequest } from '@/core/application/dto/student/request/CreateStudentRequest';
+import { StudentManagementService } from '../service/StudentManagementService';
+import { GetStudentQuery } from '@/graphql/student/GetStudent.graphql';
+import SuccessResponse from '@/core/application/dto/common/responses/SuccessResponse';
+import { GetStudentRequest } from '@/core/application/dto/student/request/GetStudentRequest';
 
-
-export const updateMyProfile = async (
+export const getStudent = async (
     translator: any,
     router: NextRouter,
-    variables : UpdateMyProfileRequest,
+    variables: GetStudentRequest,
     LoggerService: LoggerService,
     cookies: Cookie,
+    setData: Function,
     setLoading: Function
 ) => {
     if(variables != null) {
         const localStorage = new LocalStorageService();
         setLoading(true);
-        let response = await new ProfileManagementService().updateMyProfileAccountAsync(
-            UpdateMyProfileMutation,
+        let response = await new StudentManagementService().getStudentAsync(
+            GetStudentQuery,
             cookies,
             variables
         );
         if(response.status == 200) {
-            notifySuccess(translator, "Update profile successfully");
-            await setRecoilStateAsync(ProfileState, {
-                data: {},
-            });
-            localStorage.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(false,'',''));
-            await router.push("/account/sign-in.html");
+            setLoading(false);
+            setData((response as SuccessResponse)?.data?.getStudents?.students);
         }
         if(response.status == 202) {
-            setLoading(false);
             let errors = (response as FailureResponse).errors;
             if(errors != null && errors.length > 0)
                 notifyError(translator, filterError(errors));
         }
+        setLoading(false);
         if(response.constructor.name == InvalidModelStateResponse.name) {
-            setLoading(false);
             LoggerService.info((response as InvalidModelStateResponse).errors);
         }
         return response;
+
     }
+
 }

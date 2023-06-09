@@ -7,12 +7,12 @@
     margin-bottom: 12px;
 }
 
-.input_update_profile {
+.input_profile {
     margin-top: 10px;
     height: 36px;
 }
 
-.input_update_profile_wrapper{
+.input_profile_wrapper{
     flex-direction: column;
 }
 

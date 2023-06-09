@@ -2,7 +2,7 @@ import { CancelToken } from "axios";
 import { RequestResponse } from "src/core/application/dto/common/responses/RequestResponse";
 import { RequestDocument, Variables } from "graphql-request";
 import Cookie from "src/core/application/common/models/Cookies";
-import { UpdateMyProfileRequest } from "src/core/application/dto/profile/UpdateMyProfileRequest";
+import { UpdateMyProfileRequest } from "@/core/application/dto/profile/request/UpdateMyProfileRequest";
 
 export interface IProfileManagementService {
 

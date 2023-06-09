@@ -19,7 +19,7 @@ import { RequestDocument, Variables } from "graphql-request";
 import { LogoutAccountRequest } from "src/core/application/dto/account/requests/LogoutAccountRequest";
 import { ForgotPasswordRequest } from "src/core/application/dto/account/requests/ForgotPasswordRequest";
 import { ChangePasswordForForgotRequest } from "src/core/application/dto/account/requests/ChangePasswordForForgotRequest";
-import { UpdateMyProfileRequest, UpdateMyProfileVer2Request } from "src/core/application/dto/profile/UpdateMyProfileRequest";
+import { UpdateMyProfileRequest, UpdateMyProfileVer2Request } from "@/core/application/dto/profile/request/UpdateMyProfileRequest";
 import LocalStorageService from "src/infrastructure/services/LocalStorageService";
 import { SignUpPasswordReQuest } from "@/core/application/dto/account/requests/SignUpWithPassword";
 
@@ -29,7 +29,7 @@ export class AccountManagementService implements IAccountManagementService {
     private readonly cookieService = new CookieService();
     private readonly localStorageService = new LocalStorageService();
 
-    async signInWithOAuthAsync(query: RequestDocument, cookie: Cookie, variables: SignInWithOAuthRequest): Promise<RequestResponse> {
+    async signInWithOAuthAsync(query: RequestDocument, cookie: Cookie, variables: SignInWithOAuthRequest|any): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
             if (result.status == 200) {
@@ -49,7 +49,7 @@ export class AccountManagementService implements IAccountManagementService {
         }
     }
 
-    public async signInWithEmailAsync(query: RequestDocument, cookie: Cookie, variables?: SignInWithPasswordRequest): Promise<RequestResponse> {
+    public async signInWithEmailAsync(query: RequestDocument, cookie: Cookie, variables?: SignInWithPasswordRequest|any): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
             if (result.status == 200) {
@@ -70,7 +70,7 @@ export class AccountManagementService implements IAccountManagementService {
         }
     }
 
-    public async signUpWithEmailAsync(query: RequestDocument, cookie: Cookie, variables?: SignUpPasswordReQuest): Promise<RequestResponse> {
+    public async signUpWithEmailAsync(query: RequestDocument, cookie: Cookie, variables?: SignUpPasswordReQuest|any): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
             if (result.status == 200) {
@@ -90,7 +90,7 @@ export class AccountManagementService implements IAccountManagementService {
         }
     }
 
-    public async logoutAsync(query: RequestDocument, cookie: Cookie, variables?: LogoutAccountRequest): Promise<RequestResponse> {
+    public async logoutAsync(query: RequestDocument, cookie: Cookie, variables?: LogoutAccountRequest|any): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variables);
             if (result.status == 200) {
@@ -110,7 +110,7 @@ export class AccountManagementService implements IAccountManagementService {
         }
     }
 
-    public async forgotPasswordAsync(query: RequestDocument, cookie: Cookie, variable?: ForgotPasswordRequest): Promise<RequestResponse> {
+    public async forgotPasswordAsync(query: RequestDocument, cookie: Cookie, variable?: ForgotPasswordRequest|any): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
             if (result.status == 200) {
@@ -130,7 +130,7 @@ export class AccountManagementService implements IAccountManagementService {
 
     }
 
-    public async changePasswordForForgot(query: RequestDocument, cookie: Cookie, variable?: ChangePasswordForForgotRequest): Promise<RequestResponse> {
+    public async changePasswordForForgot(query: RequestDocument, cookie: Cookie, variable?: ChangePasswordForForgotRequest |any): Promise<RequestResponse> {
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
             if (result.status == 200) {
@@ -151,7 +151,7 @@ export class AccountManagementService implements IAccountManagementService {
     }
 
 
-    public async changePasswordAsync(query: RequestDocument, cookie: Cookie, variable?: Variables): Promise<RequestResponse> {
+    public async changePasswordAsync(query: RequestDocument, cookie: Cookie, variable?: Variables|any): Promise<RequestResponse> {
 
         try {
             let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);

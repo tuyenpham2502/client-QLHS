@@ -15,6 +15,11 @@ export default class MessageErrors {
             code:"UNAUTHENTICATED",
             message:"Email or password is incorrect"
         },
+        {
+            name:"YouDontHavePermissionError",
+            code:"PERMISSION_DENIED",
+            message:"You don't have permission"
+        }
     ]
 
 }

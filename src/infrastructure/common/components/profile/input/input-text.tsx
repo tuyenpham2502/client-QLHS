@@ -14,10 +14,11 @@ type ProfileInputProps = {
 };
 
 const ProfileInput = (props: ProfileInputProps) => {
-    const { label, isRequired, dataUser, attriButeName, disabled, setDataUser, dataUserAttribute: dataUserAttribute } = props;
+    const { label, isRequired, dataUser, attriButeName, disabled, setDataUser, dataUserAttribute } = props;
     const id = useId();
     const [value, setValue] = useState("");
     const labelLower = label.toLowerCase();
+
     useEffect(() => {
         if (attriButeName){
             setValue(dataUserAttribute);
@@ -32,7 +33,7 @@ const ProfileInput = (props: ProfileInputProps) => {
 
 
     return (
-        <Row className={styles.input_update_profile_wrapper}>
+        <Row className={styles.input_profile_wrapper}>
             <label htmlFor={id} className="label-for-input">
                 <NormalText className={styles.label_input}>
                     {label} {isRequired ? <span className="require">*</span> : null}
@@ -41,7 +42,7 @@ const ProfileInput = (props: ProfileInputProps) => {
             <Input id={id} 
                 value={value} 
                 width={"100%"} 
-                className={styles.input_update_profile} 
+                className={styles.input_profile} 
                 placeholder={"Enter " + labelLower} 
                 onChange={onChangeValue}
                 disabled={disabled}

@@ -351,8 +351,8 @@ const DashBoardPage = (context: any) => {
                     </Col>
                 </Row>
             </Col>
-            <DialogProfileUser isOpenModalProfile={isOpenModalProfile} handleLogOut={handleLogOut} dataProfile={dataProfile}  />
-            <Dialog message="Are you sure you want to sign out?" isOpenModalConfirm={isOpenModalConfirm} handleCancel={handleCancelConfirmDialog} handleOk={handelOkConfirmDialog} />
+            {isOpenModalProfile&&<DialogProfileUser isOpenModalProfile={isOpenModalProfile} handleLogOut={handleLogOut} dataProfile={dataProfile}  />}
+            {isOpenModalConfirm && <Dialog message="Are you sure you want to sign out?" isOpenModalConfirm={isOpenModalConfirm} handleCancel={handleCancelConfirmDialog} handleOk={handelOkConfirmDialog} />}
 
 
 

@@ -8,7 +8,7 @@ import SuccessResponse from "src/core/application/dto/common/responses/SuccessRe
 import { SignInWithPasswordRequest } from "src/core/application/dto/account/requests/SignInWithPasswordRequest";
 import { RoleName } from "src/core/domain/enums/Roles";
 import { LoginMutation } from "src/graphql/account/LoginMutation.graphql";
-import { GetMeQuery } from "src/graphql/account/GetMeQuery.graphql";
+import { GetMeQuery } from "@/graphql/my-profile/GetMeQuery.graphql";
 import { notifyError, notifySuccess } from "src/infrastructure/common/components/controls/toast/toast-message";
 import { setRecoilStateAsync } from "src/infrastructure/common/libs/recoil-outside/Service";
 import { filterError } from "src/infrastructure/helpers";

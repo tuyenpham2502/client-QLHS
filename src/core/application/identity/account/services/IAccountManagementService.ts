@@ -8,7 +8,7 @@ import { LogoutAccountRequest } from "src/core/application/dto/account/requests/
 import { ForgotPasswordRequest } from "src/core/application/dto/account/requests/ForgotPasswordRequest";
 import { ChangePasswordForForgotRequest } from "src/core/application/dto/account/requests/ChangePasswordForForgotRequest";
 import Cookie from "src/core/application/common/models/Cookies";
-import { UpdateMyProfileRequest } from "src/core/application/dto/profile/UpdateMyProfileRequest";
+import { UpdateMyProfileRequest } from "@/core/application/dto/profile/request/UpdateMyProfileRequest";
 
 export interface IAccountManagementService {
   /**
