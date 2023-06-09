@@ -109,7 +109,6 @@ const SignInPage = (context: any) => {
         }
     };
 
-    console.log("loading", loading);
 
     return (
         <>

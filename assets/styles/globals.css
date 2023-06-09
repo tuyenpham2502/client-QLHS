@@ -111,8 +111,13 @@ a {
 }
 
 
-.ant-input{
-  border-radius: 10px;
+
+.select-student .ant-select-selector{
+  border-radius: 10px !important;
+}
+
+.select-student .ant-select-selector{
+  height: 36px !important;
 }
 
 
@@ -196,4 +201,8 @@ a {
     color: black !important;
 }
 
+.loading-wrapper{
+  display: flex;
+  justify-content: center;
+}
 

@@ -1,7 +1,9 @@
 import Constant from "@/core/application/common/Constants"
 import MessageErrors from "@/core/application/common/MessageError"
-var userRole:any = [];
-export const validateFields = ({isImplicitChange = false, key, isCheck, setError, error, message}:any) => {
+let userRole:any;
+let listPermissionOfToken: any[] = [];
+
+export const validateFields = (isImplicitChange = false, key, isCheck, setError, error, message) => {
     if (isImplicitChange) {
         error[key] = {
             isError: isCheck,
@@ -31,7 +33,7 @@ export const getUserRole = () => {
     return userRole;
 }
 
-export const setUserRole = (role) => {
+export const setUserRole = (role:any) => {
     userRole = role != null ? role : [];
 }
 

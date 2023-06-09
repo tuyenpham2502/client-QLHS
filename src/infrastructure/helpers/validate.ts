@@ -15,13 +15,18 @@ export function validateInputPassword(val: string, oldVal = "") {
     return val && reg.test(val);
 }
 
+export function validateStudentId(val: string) {
+    let regex = /^[A-Z]{2}\d{6}$/;
+  return regex.test(val);
+};
+
 export function validatePhoneNumber(val: string) {
     let reg = /^(84|0[3|5|7|8|9])+([0-9]{8})\b/;
     return val && reg.test(val);
 }
 
 export function validateName(val: string) {
-    let reg = /[^0-9]{3,}$/;
+    let reg = /[^0-9]{2,}$/;
     return val && reg.test(val);
 }
 

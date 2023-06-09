@@ -1,0 +1,37 @@
+.student_detail_title{
+    margin-bottom: 12px;
+
+}
+
+.name_title_student_detail {
+    font-weight: 600;
+    font-size: 26px;
+    color: #14238A;
+}
+
+.student_detail_content{
+    margin-top: 50px;
+}
+
+.student_detail_content .avatar_wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.student_detail_content .description_text{
+    font-weight: 300;
+    font-size: 18px;
+}
+
+.student_detail_content_header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.student_detail_content_body{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

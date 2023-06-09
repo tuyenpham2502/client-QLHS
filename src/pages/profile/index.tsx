@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ProfileState } from '@/core/application/common/atoms/Identity/Profile/ProfileState'
 import { BoldText, LinkText, TitleText } from '@/infrastructure/common/components/controls/text'
-import ProfileInput from '@/infrastructure/common/components/input/input-text'
+import ProfileInput from '@/infrastructure/common/components/profile/input/input-text'
 import MainLayout from '@/infrastructure/common/layout/MainLayout'
 import { Button, Col, Row } from 'antd'
 import { NextSeo } from 'next-seo'
@@ -11,9 +11,10 @@ import ProfileDatePicker from '@/infrastructure/common/components/account/date-p
 import { updateMyProfile } from '@/infrastructure/identity/profile/effect/UpdateMyProfile'
 import LoggerService from '@/infrastructure/services/LoggerService'
 import { useTranslation } from 'react-i18next'
-import { UpdateMyProfileRequest } from '@/core/application/dto/profile/UpdateMyProfileRequest'
+import { UpdateMyProfileRequest } from '@/core/application/dto/profile/request/UpdateMyProfileRequest'
 import { useRouter } from 'next/router'
 import Dialog from '@/infrastructure/common/components/dialog/dialog'
+import { FullPageLoading } from '@/infrastructure/common/components/controls/loading'
 
 
 const Profile = (context: any) => {
@@ -143,10 +144,9 @@ const Profile = (context: any) => {
 
                     </Col>
                 </Row>
-
             </div>
             <Dialog message="Are you want to log out?" isOpenModalConfirm={isOpenModalConfirm} handleCancel={handleCancelConfirmDialog} handleOk={handelOkConfirmDialog} />
-
+            <FullPageLoading loading={loading} />
         </MainLayout>
     )
 }
