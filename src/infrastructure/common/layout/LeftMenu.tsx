@@ -35,7 +35,7 @@ const LeftMenu = ({ context, translator }: any) => {
 
         >
             <div className={styles.layout_left_menu_sider_children}>
-                <Image src={logo} alt="logo" width={collapsed ? 80 : 200} height={collapsed ? 60 : 200} />
+                <Image src={logo} alt="logo" width={collapsed ? 80 : 200} height={collapsed ? 60 : 200} loading="lazy" />
                 <div className={styles.left_menu_item}>
                     <MenuUI
                         theme={root.theme}

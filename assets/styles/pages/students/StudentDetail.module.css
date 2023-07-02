@@ -30,3 +30,8 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.description_wrapper {
+    height: 120px;
+    overflow: auto;
+}

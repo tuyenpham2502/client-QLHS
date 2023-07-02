@@ -1,4 +1,4 @@
-import Cookie from "src/core/application/common/models/Cookie";
+import Cookie from "src/core/application/common/models/Cookies";
 import {NextPageContext} from "next";
 
 export interface ICookieService {

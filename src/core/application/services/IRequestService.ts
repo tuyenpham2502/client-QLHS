@@ -1,6 +1,6 @@
 import {AxiosRequestConfig, CancelToken} from "axios";
 import {RequestResponse} from "src/core/application/dto/common/responses/RequestResponse";
-import Cookie from "../common/models/Cookie";
+import Cookie from "src/core/application/common/models/Cookies";
 
 export interface IRequestService {
     /**
