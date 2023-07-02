@@ -9,7 +9,7 @@ import styles from 'assets/styles/common/layout/MainLayout.module.css'
 import { useTranslation } from "react-i18next";
 import LoggerService from "src/infrastructure/services/LoggerService";
 import LocalStorageService from "src/infrastructure/services/LocalStorageService";
-import Constant from "src/core/application/common/Constants";
+import Constant from "src/core/application/common/constants";
 import { ProfileManagementService } from "src/infrastructure/identity/profile/service/ProfileManagementService";
 import Cookie from "src/core/application/common/models/Cookies";
 import { GetMeQuery } from "src/graphql/my-profile/GetMeQuery.graphql";
@@ -19,7 +19,6 @@ import { setRecoilStateAsync } from "../libs/recoil-outside/Service";
 import { ProfileState, RoleNameLoginState } from "src/core/application/common/atoms/Identity/Profile/ProfileState";
 import FailureResponse from "src/core/application/dto/common/responses/FailureResponse";
 import { notifyError } from "../components/controls/toast/toast-message";
-import Constants from "src/core/application/common/Constants";
 import { FullPageLoading } from "../components/controls/loading";
 import jwtDecode from "jwt-decode";
 
@@ -56,7 +55,7 @@ const getMyProfileAsync = async (
         let errors = (response as FailureResponse)?.errors;
         if (errors != null && errors.length > 0) {
             notifyError(translator, filterError(errors));
-            localStorageService.setStorage(Constants.API_TOKEN_STORAGE, new Cookie(false, "", ""));
+            localStorageService.setStorage(Constant.API_TOKEN_STORAGE, new Cookie(false, "", ""));
             setLoading(false);
         }
     }
