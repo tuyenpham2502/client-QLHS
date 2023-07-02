@@ -1,4 +1,4 @@
-import Constants from 'src/core/application/common/Constants';
+import Constants from 'src/core/application/common/constants';
 import { MenuTheme } from "antd";
 
 export default class Menu {
