@@ -1,7 +1,6 @@
 import { MenuTheme } from "antd";
-import Constants from "../../Constants";
 export default class Menu {
-    constructor(theme: MenuTheme = Constants.AppTheme, key: string = '', defaultSelectedKeys: string[] = ['1'], mode: any = 'inline', children: any[]) {
+    constructor(theme: MenuTheme ="dark" , key: string = '', defaultSelectedKeys: string[] = ['1'], mode: any = 'inline', children: any[]) {
         this.theme = theme;
         this.defaultSelectedKeys = defaultSelectedKeys;
         this.mode = mode;
