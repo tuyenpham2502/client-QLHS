@@ -63,7 +63,7 @@ export const notifyError = (translator: any, title: any, message?: any) => {
 
 };
 
-export const notifyWarning = (translator: any, title: any, message?: string, duration: number = Constants.ToastMessage.Notification.Duration, placement: NotificationPlacement = Constants.ToastMessage.Notification.Position) => {
+export const notifyWarning = (translator: any, title: any, message?: string, duration: number = Constant.ToastMessage.Notification.Duration, placement: NotificationPlacement = Constant.ToastMessage.Notification.Position) => {
     if (message == null || message.length == 0) {
         notification.warning({
             message: translator('Warning'),
