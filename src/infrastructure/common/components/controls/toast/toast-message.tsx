@@ -1,6 +1,6 @@
 import { notification } from "antd";
 import type { NotificationPlacement } from 'antd/es/notification/interface';
-import Constant from "@/core/application/common/Constants";
+import Constant from "src/core/application/common/Constants";
 /**
  * Show toast message, if you leave the message as null or empty, it will show title only
  * @param translator
