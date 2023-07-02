@@ -9,7 +9,7 @@ import styles from 'assets/styles/common/layout/MainLayout.module.css'
 import { useTranslation } from "react-i18next";
 import LoggerService from "src/infrastructure/services/LoggerService";
 import LocalStorageService from "src/infrastructure/services/LocalStorageService";
-import Constant from "src/core/application/common/constants";
+import Constant from "@/core/application/common/Constants";
 import { ProfileManagementService } from "src/infrastructure/identity/profile/service/ProfileManagementService";
 import Cookie from "src/core/application/common/models/Cookies";
 import { GetMeQuery } from "src/graphql/my-profile/GetMeQuery.graphql";
