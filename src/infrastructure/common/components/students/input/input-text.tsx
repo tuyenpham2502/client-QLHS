@@ -1,10 +1,10 @@
 import React, { useEffect, useId, useState } from "react";
 import { Col, Input, Row } from "antd";
-import { NormalText } from "@/infrastructure/common/components/controls/text";
+import { NormalText } from "src/infrastructure/common/components/controls/text";
 import styles from "assets/styles/pages/students/AddStudents.module.css"
 import { MessageError } from "../../controls/message-error";
 import { validateEmail, validateStudentId, validateName, validatePhoneNumber } from "@/infrastructure/helpers/validate";
-import { validateFields } from "@/infrastructure/helpers";
+import { validateFields } from "src/infrastructure/helpers";
 
 type StudentInputProps = {
     label?: string;
