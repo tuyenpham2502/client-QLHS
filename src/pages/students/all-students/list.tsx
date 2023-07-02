@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NextSeo } from "next-seo";
 import { Button, Col, Dropdown, Input, Menu, Row, Select, Table } from "antd";
-import {MenuUnfoldOutlined} from "@ant-design/icons";
+import { MenuUnfoldOutlined } from "@ant-design/icons";
 const { Column, ColumnGroup } = Table;
 import {
   BoldText,
@@ -83,12 +83,20 @@ const AllStudentsPage = (context: any) => {
   const listActions = (record: any) => {
     return (
       <Menu>
-        <CommonMenuItem children="Sửa" key="1" permission="admin" onClick={
+        <CommonMenuItem key="2" permission="admin" onClick={
+          () => {
+            onOpenModalStudentDetail(record)
+          }
+        }>
+          View
+        </CommonMenuItem>
+        <CommonMenuItem key="1" permission="admin" onClick={
           () => {
             onClickLinkText(record)
           }
-        } />
-
+        }>
+          Edit
+        </CommonMenuItem>
       </Menu>
     )
   }
@@ -179,7 +187,7 @@ const AllStudentsPage = (context: any) => {
                 )}
               />
               <Column title="Phone" dataIndex="phoneNumber" key="phoneNumber" />
-              <Column  render={(val, record: any) => (
+              <Column render={(val, record: any) => (
                 <Dropdown overlay={listActions(record)} trigger={['click']}>
                   <MenuUnfoldOutlined />
                 </Dropdown>

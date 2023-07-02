@@ -1,4 +1,3 @@
-import { GetStudentDetail } from './../../../graphql/student/GetStudentDetail.graphql';
 import { IStudentManagementService } from "@/core/application/common/student/services/IStudentManagementService";
 import axios, { CancelToken } from "axios";
 import FailureResponse from "src/core/application/dto/common/responses/FailureResponse";
@@ -17,7 +16,7 @@ import LocalStorageService from "src/infrastructure/services/LocalStorageService
 import { CreateStudentRequest } from "@/core/application/dto/student/request/CreateStudentRequest";
 import { GetStudentRequest } from "@/core/application/dto/student/request/GetStudentRequest";
 import { GetStudentDetailRequest } from '@/core/application/dto/student/request/GetStudentDetail';
-
+import { UpdateStudentRequest } from "@/core/application/dto/student/request/UpdateStudent";
 export class StudentManagementService implements IStudentManagementService {
 
     private readonly loggerService = new LoggerService();
@@ -81,6 +80,27 @@ export class StudentManagementService implements IStudentManagementService {
             throw e;
         }
 
-    }
+    };
 
+    public async UpdateStudentAsync(query: RequestDocument, cookie: Cookie, variable?: UpdateStudentRequest | any): Promise<RequestResponse> {
+
+        try {
+            let result = await new RequestGraphQLService().makePostRequestAsync(query, cookie, variable);
+            if (result.status == 200) {
+                return result as SuccessResponse;
+            }
+            if (result.status == 202) {
+                return result as FailureResponse;
+            }
+
+            if (result.status == 400) {
+                return result as InvalidModelStateResponse
+            }
+            throw new NetworkException('No http status code handler');     
+        }
+        catch (e) {
+            this.loggerService.error(e);
+            throw e;
+        }
+    };
 }

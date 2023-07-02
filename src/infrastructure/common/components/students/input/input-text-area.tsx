@@ -5,7 +5,7 @@ import styles from "assets/styles/pages/students/AddStudents.module.css"
 import { MessageError } from "../../controls/message-error";
 
 type StudentInputProps = {
-    label: string;
+    label?: string;
     isRequired?: boolean;
     dataUser?: any;
     attriButeName: string;
@@ -14,16 +14,20 @@ type StudentInputProps = {
     dataUserAttribute?: any;
 };
 
-export const StudentInputTextArea = (props:StudentInputProps) => {
-    const { label, isRequired, dataUser, attriButeName, disabled, setDataUser, dataUserAttribute  } = props;
+export const StudentInputTextArea = (props: StudentInputProps) => {
+    const { label, isRequired, dataUser, attriButeName, disabled, setDataUser, dataUserAttribute } = props;
 
     const id = useId();
-    const labelLower = label.toLowerCase();
+    const labelLower = label?.toLowerCase();
     const [value, setValue] = useState("");
 
     const onChangeValue = (e: any) => {
         setValue(e.target.value);
     };
+
+    useEffect(() => {
+        setValue(dataUserAttribute);
+    }, [dataUserAttribute]);
 
     const onBlur = () => {
         setDataUser({ [attriButeName]: value || null });
@@ -32,25 +36,27 @@ export const StudentInputTextArea = (props:StudentInputProps) => {
 
 
     return (
-         <Row className={styles.input_student_wrapper}>
-            <label htmlFor={id} className="label-for-input">
-                <NormalText className={styles.label_input}>
-                    {label} {isRequired ? <span className="require">*</span> : null}
-                </NormalText>
-            </label>
-            <Input.TextArea 
+        <Row className={styles.input_student_wrapper}>
+            {label ? (
+                <label htmlFor={id} className="label-for-input">
+                    <NormalText className={styles.label_input}>
+                        {label} {isRequired ? <span className="require">*</span> : null}
+                    </NormalText>
+                </label>
+            ) : null
+            }
+            <Input.TextArea
                 id={id}
                 value={value}
-                maxLength={200}
                 onBlur={onBlur}
                 showCount
-                rows={4} 
+                rows={4}
                 allowClear
-                style={{height:120, resize:'none' }}
+                style={{ height: 120, resize: 'none' }}
                 className={styles.input_student}
-                placeholder={"Enter " + labelLower}
+                placeholder={label ? `Enter ${labelLower}` : ""}
                 onChange={onChangeValue}
-                disabled={disabled} 
+                disabled={disabled}
             />
         </Row>
     )

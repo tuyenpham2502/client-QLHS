@@ -8,7 +8,7 @@ import { validate } from 'graphql';
 import { validateFields } from '@/infrastructure/helpers';
 import { MessageError } from '../../controls/message-error';
 type DatePickerProps = {
-    label: string;
+    label?: string;
     isRequired?: boolean;
     dataUser?: any;
     attriButeName: string;
@@ -23,7 +23,7 @@ const ProfileDatePicker = (props: DatePickerProps) => {
     const { label, isRequired, dataUser, attriButeName, disabled, setDataUser, dataUserAttribute, validate, setValidate } = props;
     const id = useId();
     const [date, setDate] = useState<any>();
-    const labelLower = label.toLowerCase();
+    const labelLower = label?.toLowerCase();
 
     const onChangeDate = (date: any, dateString: any) => {
         setDate(date || null);
@@ -47,11 +47,13 @@ const ProfileDatePicker = (props: DatePickerProps) => {
 
     return (
         <Row className={styles.input_student_wrapper}>
+            {label ?
             <label htmlFor={id} className="label-for-input">
                 <NormalText className={styles.label_input}>
                     {label} {isRequired ? <span className="require">*</span> : null}
                 </NormalText>
             </label>
+            : null}
             <DatePicker
                 id={id} 
                 disabledDate={disabledDate}
@@ -60,7 +62,7 @@ const ProfileDatePicker = (props: DatePickerProps) => {
                 onBlur={() => onBlur(false)}
                 format="DD/MM/YYYY" 
                 className={styles.input_student} 
-                placeholder={"Enter " + labelLower} 
+                placeholder={label ? `Enter ${labelLower}` : ''}
                 size='small' 
                 allowClear={false}
                 />

@@ -1,7 +1,7 @@
 import { Typography } from 'antd';
 import React from 'react';
 import styles from 'assets/styles/common/components/controls/text.module.css'
-
+import Image from 'next/image'
 const { Text, Title, Link } = Typography;
 
 export const NormalText = ({ className, children, ...props }:any) => {
@@ -59,7 +59,7 @@ export const TextWithIcon = ({ className, label, children, icon, ...props }:any)
         {...props}
     >
         {/* <span style={{ marginRight: '20px', fontSize: "18px" }}>{icon}</span> */}
-        <img style={{ width: "30px", height: "30px", marginRight: "10px" }} src={icon} />
+        <Image width={30} height={30} style={{marginRight: "10px"}} src={icon} alt="icon" />
         <div>
             <div className={styles.color_font}>{label} </div>
             <div style={{ fontSize: "20px" }}>{children}</div>

@@ -35,3 +35,8 @@
     flex-direction: column;
     gap: 20px;
 }
+
+.description_wrapper{
+    height: 80px;
+    overflow: auto;
+}

@@ -68,7 +68,7 @@ const DialogStudentDetail = (prop: Props, context: any) => {
                   {dataStudentDetail?.name}
                 </NormalText>
               </Row>
-              <Row style={{width:"400px"}}>
+              <Row className={styles.description_wrapper} style={{width:"400px"}}>
                 <NormalText className={styles.description_text}>{dataStudentDetail?.description}</NormalText>
               </Row>
             </div>
