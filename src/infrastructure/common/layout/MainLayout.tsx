@@ -7,23 +7,23 @@ import Header from "src/infrastructure/common/layout/Header";
 import Content from "src/infrastructure/common/layout/Content";
 import styles from 'assets/styles/common/layout/MainLayout.module.css'
 import { useTranslation } from "react-i18next";
-import LoggerService from "@/infrastructure/services/LoggerService";
-import LocalStorageService from "@/infrastructure/services/LocalStorageService";
-import Constant from "@/core/application/common/Constants";
-import { ProfileManagementService } from "@/infrastructure/identity/profile/service/ProfileManagementService";
-import Cookie from "@/core/application/common/models/Cookies";
-import { GetMeQuery } from "@/graphql/my-profile/GetMeQuery.graphql";
-import { filterError, setUserRole } from "@/infrastructure/helpers";
-import SuccessResponse from "@/core/application/dto/common/responses/SuccessResponse";
+import LoggerService from "src/infrastructure/services/LoggerService";
+import LocalStorageService from "src/infrastructure/services/LocalStorageService";
+import Constant from "src/core/application/common/Constants";
+import { ProfileManagementService } from "src/infrastructure/identity/profile/service/ProfileManagementService";
+import Cookie from "src/core/application/common/models/Cookies";
+import { GetMeQuery } from "src/graphql/my-profile/GetMeQuery.graphql";
+import { filterError, setUserRole } from "src/infrastructure/helpers";
+import SuccessResponse from "src/core/application/dto/common/responses/SuccessResponse";
 import { setRecoilStateAsync } from "../libs/recoil-outside/Service";
-import { ProfileState, RoleNameLoginState } from "@/core/application/common/atoms/Identity/Profile/ProfileState";
-import FailureResponse from "@/core/application/dto/common/responses/FailureResponse";
+import { ProfileState, RoleNameLoginState } from "src/core/application/common/atoms/Identity/Profile/ProfileState";
+import FailureResponse from "src/core/application/dto/common/responses/FailureResponse";
 import { notifyError } from "../components/controls/toast/toast-message";
-import Constants from "@/core/application/common/Constants";
+import Constants from "src/core/application/common/Constants";
 import { FullPageLoading } from "../components/controls/loading";
 import jwtDecode from "jwt-decode";
 
-const LeftMenu = dynamic(() => import('@/infrastructure/common/layout/LeftMenu'), { ssr: false });
+const LeftMenu = dynamic(() => import('src/infrastructure/common/layout/LeftMenu'), { ssr: false });
 
 const getMyProfileAsync = async (
     translator: any,
