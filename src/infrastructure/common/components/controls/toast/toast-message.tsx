@@ -1,6 +1,6 @@
 import { notification } from "antd";
 import type { NotificationPlacement } from 'antd/es/notification/interface';
-import Constants from "src/core/application/common/Constants";
+import Constant from "src/core/application/common/Constants";
 /**
  * Show toast message, if you leave the message as null or empty, it will show title only
  * @param translator
@@ -12,15 +12,15 @@ export const notifyInfo = (translator: any, title: string, message?: string) => 
         notification.info({
             message: translator('Info'),
             description: title,
-            placement: Constants.ToastMessage.Notification.Position,
-            duration: Constants.ToastMessage.Notification.Duration,
+            placement: Constant.ToastMessage.Notification.Position,
+            duration: Constant.ToastMessage.Notification.Duration,
         });
     } else {
         notification.info({
             message: title,
             description: message,
-            placement: Constants.ToastMessage.Notification.Position,
-            duration: Constants.ToastMessage.Notification.Duration,
+            placement: Constant.ToastMessage.Notification.Position,
+            duration: Constant.ToastMessage.Notification.Duration,
         });
     }
 };
@@ -30,15 +30,15 @@ export const notifySuccess = (translator: any, title: any, message?: string) => 
         notification.success({
             message: translator('Success'),
             description: title,
-            placement: Constants.ToastMessage.Notification.Position,
-            duration: Constants.ToastMessage.Notification.Duration,
+            placement: Constant.ToastMessage.Notification.Position,
+            duration: Constant.ToastMessage.Notification.Duration,
         });
     } else {
         notification.success({
             message: title,
             description: message,
-            placement: Constants.ToastMessage.Notification.Position,
-            duration: Constants.ToastMessage.Notification.Duration,
+            placement: Constant.ToastMessage.Notification.Position,
+            duration: Constant.ToastMessage.Notification.Duration,
         });
     }
 
@@ -49,15 +49,15 @@ export const notifyError = (translator: any, title: any, message?: any) => {
         notification.error({
             message: translator('Error'),
             description: title,
-            placement: Constants.ToastMessage.Notification.Position,
-            duration: Constants.ToastMessage.Notification.Duration,
+            placement: Constant.ToastMessage.Notification.Position,
+            duration: Constant.ToastMessage.Notification.Duration,
         });
     } else {
         notification.error({
             message: title,
             description: message,
-            placement: Constants.ToastMessage.Notification.Position,
-            duration: Constants.ToastMessage.Notification.Duration,
+            placement: Constant.ToastMessage.Notification.Position,
+            duration: Constant.ToastMessage.Notification.Duration,
         });
     }
 
